@@ -13,9 +13,8 @@ import java.util.ArrayList;
  */
 public class Onibus {
    // private String nome;
-    int quantidade;
     private int rota, capacidade, numero;
-    private Passageiro passageiros[];
+    private ArrayList<Passageiro> passageiros;
     public Onibus(){
     }
     
@@ -23,8 +22,7 @@ public class Onibus {
         numero = numero;
         this.rota = rota;
         this.numero = this.numero;
-        passageiros = new Passageiro[capacidade];
-        this.quantidade = 0;
+        passageiros = new ArrayList<Passageiro>();
     }
 
     //Retorna capacidade
@@ -65,8 +63,8 @@ public class Onibus {
     
     //Adicionar passageiro no onibus
     public boolean AdicionarPassageiro(Passageiro passageiro){
-        if(this.quantidade < this.capacidade){
-            this.passageiros[quantidade] = passageiros;
+        if(passageiros.size() <= this.capacidade){
+            this.passageiros.add(passageiro);
             return true;
         }
         return false;
@@ -76,14 +74,15 @@ public class Onibus {
     
     
     //Retorna os passageiros do onibus
-    public ArrayList<Passageiro> exibirOnibus(){
-        ArrayList<Passageiro> passageiro = new ArrayList<>();
-        
-        for(int i = 0; i < quantidade; i++){
-            passageiro.add(this.passageiros[i].clone();
-        }
-        
-        return passageiro;
+    public ArrayList<Passageiro> getPassageiros(){
+        return passageiros;
+    }
+    
+    public boolean RemoverPassageiro(String nome){
+        for(int i = 0; i < passageiros.size(); i++){
+            if(passageiros.getClass(i).getNome().equals(nome)){
+                this.passageiros.remove(i);
+            }
     }
     
   /*  @Override
