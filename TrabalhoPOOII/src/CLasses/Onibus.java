@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Onibus {
    // private String nome;
-    private int rota, capacidade, numero;
-    private ArrayList<Passageiro> passageiros;
+    private int rota, capacidade, numero, quantidade;
+    private Passageiro passageiros[];
     public Onibus(){
     }
     
@@ -22,7 +22,9 @@ public class Onibus {
         numero = numero;
         this.rota = rota;
         this.numero = this.numero;
-        passageiros = new ArrayList<Passageiro>();
+        passageiros = new Passageiro(capacidade);
+        passageiros = null;
+        this.quantidade  = 0;
     }
 
     //Retorna capacidade
@@ -63,10 +65,11 @@ public class Onibus {
     
     //Adicionar passageiro no onibus
     public boolean AdicionarPassageiro(Passageiro passageiro){
-        if(passageiros.size() <= this.capacidade){
-            this.passageiros.add(passageiro);
+        if(this.quantidade < this.capacidade){
+            passageiros[quantidade] = passageiro;
             return true;
         }
+        
         return false;
     }
     
@@ -74,16 +77,31 @@ public class Onibus {
     
     
     //Retorna os passageiros do onibus
-    public ArrayList<Passageiro> getPassageiros(){
+    public Passageiro[] getPassageiros(){
         return passageiros;
     }
     
     public boolean RemoverPassageiro(String nome){
-        for(int i = 0; i < passageiros.size(); i++){
-            if(passageiros.getClass(i).getNome().equals(nome)){
-                this.passageiros.remove(i);
-            }
+        for(int i = 0; i < capacidade; i++){
+        
+            if(passageiros[i] != null){
+                if(this.passageiros[i].getNome().equals(nome)){
+                    this.passageiros[i] = null;
+                }
+            }   
+        }
+        return true;
     }
+    
+   public ArrayList<Passageiro> BuscarPassageiro(String nome){
+       ArrayList<Passageiro> ListaPassageiros = new ArrayList<Passageiro>();
+       for(int i = 0; i < capacidade; i++){
+           if(this.passageiros[i] != null && this.passageiros[i].getoNome().equals(nome)){
+               ListaPassageiros.add(this.passageiros[i].clone());
+           }
+       }
+       return ListaPassageiros;
+   }
     
   /*  @Override
     public Onibus clone(){
@@ -96,5 +114,5 @@ public class Onibus {
              return null;
          }
          return onibus;
-}*
+}*/
 }
