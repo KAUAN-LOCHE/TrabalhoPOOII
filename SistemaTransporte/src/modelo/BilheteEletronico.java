@@ -6,7 +6,7 @@ public class BilheteEletronico {
     private Passageiro passageiro;
     private Viagem viagem;
     private LocalDateTime dataHora;
-    private int plataforma;
+    private int plataforma; //Não tenho ctz se plataforma e poltrona deveriam ser int
     private int poltrona;
     //private String id;
 
