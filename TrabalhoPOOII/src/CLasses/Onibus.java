@@ -22,11 +22,19 @@ public class Onibus {
         numero = numero;
         this.rota = rota;
         this.numero = this.numero;
-        passageiros = new Passageiro(capacidade);
-        passageiros = null;
+        this.capacidade = capacidade;
+        passageiros = new Passageiro[this.capacidade];
         this.quantidade  = 0;
+        inicializarPassageiros();
     }
 
+    //Inicialização do Vetor
+    public void inicializarPassageiros(){
+        for(int i = 0; i < capacidade; i++){
+            this.passageiros[i] = null;
+        }
+    }
+    
     //Retorna capacidade
     public int getCapacidade() {
         return capacidade;
