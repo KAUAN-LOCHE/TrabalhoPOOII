@@ -48,4 +48,16 @@ public class Passageiro {
         this.cpf = cpf;
     }
     
+     @Override
+    public Passageiro clone(){
+        Passageiro passageiro;
+        try{
+            passageiro = (Passageiro) super.clone();
+        }
+         catch (CloneNotSupportedException e){
+             System.out.println("Erro");  
+             return null;
+         }
+         return passageiro;
+    }
 }

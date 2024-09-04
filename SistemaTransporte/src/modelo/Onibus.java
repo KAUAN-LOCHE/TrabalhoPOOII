@@ -111,16 +111,5 @@ public class Onibus {
        return ListaPassageiros;
    }
     
-  /*  @Override
-    public Onibus clone(){
-        Onibus onibus;
-        try{
-            onibus = (Onibus) super.clone();
-        }
-         catch (CloneNotSupportedException e){
-             System.out.println("Erro");  
-             return null;
-         }
-         return onibus;
-}*/
+  
 }
