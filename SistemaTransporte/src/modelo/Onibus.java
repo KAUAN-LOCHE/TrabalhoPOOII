@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package CLasses;
+package modelo;
 
 import java.util.ArrayList;
 
@@ -104,7 +104,7 @@ public class Onibus {
    public ArrayList<Passageiro> BuscarPassageiro(String nome){
        ArrayList<Passageiro> ListaPassageiros = new ArrayList<Passageiro>();
        for(int i = 0; i < capacidade; i++){
-           if(this.passageiros[i] != null && this.passageiros[i].getoNome().equals(nome)){
+           if(this.passageiros[i] != null && this.passageiros[i].getNome().equals(nome)){
                ListaPassageiros.add(this.passageiros[i].clone());
            }
        }

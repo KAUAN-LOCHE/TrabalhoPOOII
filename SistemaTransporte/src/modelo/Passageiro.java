@@ -1,4 +1,4 @@
-package CLasses;
+package modelo;
 
 public class Passageiro {
     //atributos
