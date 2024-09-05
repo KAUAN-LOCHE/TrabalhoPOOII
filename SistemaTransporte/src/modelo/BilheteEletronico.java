@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 
 public class BilheteEletronico {
     private Passageiro passageiro;
-   // private Viagem viagem;
+   private Viagem viagem;
     private LocalDateTime dataHora;
     private int plataforma; //Não tenho ctz se plataforma e poltrona deveriam ser int
     private int poltrona;
-    //private String id;
+    private String id;
 
-    public BilheteEletronico(Passageiro passageiro, /*Viagem viagem,*/ LocalDateTime dataHora, int plataforma, int poltrona) {
+    public BilheteEletronico(Passageiro passageiro, Viagem viagem, LocalDateTime dataHora, int plataforma, int poltrona) {
         setPassageiro(passageiro);
-       // setViagem(viagem);
+        setViagem(viagem);
         setDataHora(dataHora);
         setPlataforma(plataforma);
         setPoltrona(poltrona);
@@ -23,9 +23,9 @@ public class BilheteEletronico {
         return passageiro;
     }
 
-    /*public viagem getViagem() {
+    public viagem getViagem() {
         return viagem;
-    }*/
+    }
 
     public LocalDateTime getDataHora() {
         return dataHora;
@@ -44,9 +44,9 @@ public class BilheteEletronico {
         this.passageiro = passageiro;
     }
 
-   /* public void setViagem(Viagem viagem) {
+    public void setViagem(Viagem viagem) {
         this.viagem = viagem;
-    }*/
+    }
 
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;

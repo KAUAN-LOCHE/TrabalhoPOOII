@@ -13,7 +13,7 @@ public class Onibus{
     }
     
     public Onibus(int capacidade, Motorista motorista, int numero, int rota){
-        numero = numero;
+        this.numero = numero;
         this.rota = rota;
         this.numero = this.numero;
         this.capacidade = capacidade;
@@ -84,20 +84,22 @@ public class Onibus{
     //Exibir Passageiros
     public void exibirPassageiros(){
         System.out.println("\nLISTA DE PASSAGEIROS");
-        System.out.println("\nMotorista: " + motorista );
-        for(int i = 0; i < capacidade;i++){
-            if(passageiros[i] == null) System.out.println("\t" + i+1 + ": " + "Espaço Vago");
-            else System.out.println("\t" + i+1 + ": " + passageiros[i].getNome());
+        System.out.println("\nMotorista: " + motorista.getNome() );
+        for(int i = 0; i < capacidade; i++){
+            if(passageiros[i] == null){
+                System.out.println("\t" + (i+1) + ": " + "Espaço Vago");
+           }
+            else System.out.println("\t" + (i+1) + ": " + passageiros[i].getNome());
         }
     }
     
     //Adicionar passageiro no onibus na primeira posição disponível
-    public boolean AdicionarPassageiro(Passageiro passageiro){
+    public boolean adicionarPassageiro(Passageiro passageiro){
         //Verifica se está cheio
         if(quantidade > capacidade) return false;
         
         for(int i = 0; i < capacidade; i++){
-            if(passageiros[i] != null){
+            if(passageiros[i] == null){
                 passageiros[i] = passageiro;
                 quantidade++;
                 return true;
@@ -110,32 +112,36 @@ public class Onibus{
     public boolean adicionarPassageiroPosicao(Passageiro passageiro, int posicao){
         //Verifica se está cheio
         if(quantidade > capacidade) return false;
-        
-       if(passageiros[posicao-1] == null){
+        if(posicao < 1 || posicao > capacidade) return false;
+        if(passageiros[posicao-1] == null){
            passageiros[posicao-1] = passageiro;
            quantidade++;
            return true;
-       }
+        }
        
        return false;
     }
     
     
     //Buscar passageiro no onibus por nome
-    public Passageiro buscarNome(String nome){
+    public Passageiro buscarPassageiroNome(String nome){
         if(quantidade == 0) return null;
         
         for(int i = 0; i < capacidade; i++){
-            if(passageiros[i].getNome().equals(nome)) return passageiros[i].clone();
+            if(passageiros[i] != null){
+                if(passageiros[i].getNome().equals(nome)) return passageiros[i].clone();
+            }
+                
         }
         return null;
     }
     
     //Buscar passageiro no onibus por posicao
-    public Passageiro buscarposicao(int posicao){
+    public Passageiro buscarPassageiroPosicao(int posicao){
         if(quantidade == 0) return null;
-        
-       return passageiros[posicao - 1];
+        if(posicao < 1 || posicao > capacidade) return null;
+
+       return passageiros[posicao - 1].clone();
     }
     
     //Remove todos os passageiros
@@ -159,19 +165,6 @@ public class Onibus{
         }
         return false;
     }
-        
-        
     
-    
-   public ArrayList<Passageiro> BuscarPassageiro(String nome){
-       ArrayList<Passageiro> ListaPassageiros = new ArrayList<Passageiro>();
-       for(int i = 0; i < capacidade; i++){
-           if(this.passageiros[i] != null && this.passageiros[i].getNome().equals(nome)){
-               ListaPassageiros.add(this.passageiros[i].clone());
-           }
-       }
-       return ListaPassageiros;
-   }
-    
-  
+ 
 }

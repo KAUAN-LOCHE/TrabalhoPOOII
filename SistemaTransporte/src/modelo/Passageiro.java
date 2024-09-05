@@ -1,6 +1,6 @@
 package modelo;
 
-public class Passageiro {
+public class Passageiro implements Cloneable{
     //atributos
     private String nome;
     private int idade;
