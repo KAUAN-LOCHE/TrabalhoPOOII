@@ -1,14 +1,15 @@
 package modelo;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class BilheteEletronico {
     private Passageiro passageiro;
-   private Viagem viagem;
+    private Viagem viagem;
     private LocalDateTime dataHora;
     private int plataforma; //Não tenho ctz se plataforma e poltrona deveriam ser int
     private int poltrona;
-    private String id;
+    private final UUID id;
 
     public BilheteEletronico(Passageiro passageiro, Viagem viagem, LocalDateTime dataHora, int plataforma, int poltrona) {
         setPassageiro(passageiro);
@@ -16,6 +17,16 @@ public class BilheteEletronico {
         setDataHora(dataHora);
         setPlataforma(plataforma);
         setPoltrona(poltrona);
+        this.id = UUID.randomUUID();
+    }
+
+    public String dados() {
+        return "Passageiro: " + passageiro.getNome()
+                + "\nCPF: " + passageiro.getCpf()
+                + "\nData de saída prevista: " + viagem.getDataHoraSaidaPrevista()
+                + "\nData de chegada prevista: " + viagem.getDataHoraChegadaPrevista()
+                + "\nPoltrona: " + poltrona
+                + "\nID: " + id;
     }
 
     //gettters
@@ -23,7 +34,7 @@ public class BilheteEletronico {
         return passageiro;
     }
 
-    public viagem getViagem() {
+    public Viagem getViagem() {
         return viagem;
     }
 
@@ -37,6 +48,10 @@ public class BilheteEletronico {
 
     public int getPoltrona() {
         return poltrona;
+    }
+
+    public UUID getID() {
+        return id;
     }
 
     //setters
@@ -59,4 +74,5 @@ public class BilheteEletronico {
     public void setPoltrona(int poltrona) {
         this.poltrona = poltrona;
     }
+
 }
