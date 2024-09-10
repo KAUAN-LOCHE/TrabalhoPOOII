@@ -1,4 +1,5 @@
 package modelo;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -66,7 +67,47 @@ public class Parada {
 		return this.operacional; // Some condition can be checked in the future for this method to be relevant
 	}
 	
-	
+	public String getBusTimes(ArrayList<Viagem> viagens){
+		
+		String information = "";
+		
+		// For each trip
+		for(Viagem viagem:viagens) {
+			
+			// Save its relevant information
+			ArrayList<LocalDateTime> arrivalTimes = viagem.getDataHoraChegada();
+			ArrayList<LocalDateTime> departureTimes = viagem.getDataHoraSaida();
+			Onibus onibus = viagem.getOnibus();
+			ArrayList<StatusViagem> statusViagem = viagem.getStatus();
+			
+			// For each stop in that trip
+			for(Parada parada: viagem.getParadas()) {
+				
+				// If the stop is this one 
+				if(parada.getId() == this.id) {
+						
+					// Get the stop index
+					int tripIndex = viagem.getParadas().indexOf(parada);
+					
+					//Add the relevant information to the output of this method
+					information = information + 
+									(
+									
+									"\nBus number: " + Integer.toString(onibus.getNumero()) +
+									"\nStatus: " + statusViagem.get(tripIndex).name() +
+									"\nArrival time: " + arrivalTimes.get(tripIndex) + 
+									"\nDeparture time: " + departureTimes.get(tripIndex) + "\n\n"  
+									
+									);
+					
+				}
+				
+			}
+			
+		}
+		
+		return information;
+	}
 	
 	// GETTERS AND SETTERS ==================================================================================================================================
 	public String getCidade() {
