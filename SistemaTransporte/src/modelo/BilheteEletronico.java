@@ -6,6 +6,8 @@ import java.util.UUID;
 public class BilheteEletronico {
     private Passageiro passageiro;
     private Viagem viagem;
+    private Parada embarque;
+    private Parada desembarque;
     private LocalDateTime dataHora;
     private int plataforma; //Não tenho ctz se plataforma e poltrona deveriam ser int
     private int poltrona;
@@ -25,6 +27,9 @@ public class BilheteEletronico {
                 + "\nCPF: " + passageiro.getCpf()
                 + "\nData de saída prevista: " + viagem.getDataHoraSaidaPrevista()
                 + "\nData de chegada prevista: " + viagem.getDataHoraChegadaPrevista()
+                + "\nEmbarque: " + embarque.getEnderecoFormatado()
+                + "\nDesembarque: " + desembarque.getEnderecoFormatado()
+                + "\nPlataforma: " + plataforma
                 + "\nPoltrona: " + poltrona
                 + "\nID: " + id;
     }
@@ -36,6 +41,14 @@ public class BilheteEletronico {
 
     public Viagem getViagem() {
         return viagem;
+    }
+
+    public Parada getEmbarque() {
+        return embarque;
+    }
+
+    public Parada getDesembarque() {
+        return desembarque;
     }
 
     public LocalDateTime getDataHora() {
@@ -63,6 +76,14 @@ public class BilheteEletronico {
         this.viagem = viagem;
     }
 
+    public void setEmbarque(Parada embarque) {
+        this.embarque = embarque;
+    }
+
+    public void setDesembarque(Parada desembarque) {
+        this.desembarque = desembarque;
+    }
+
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
@@ -72,7 +93,9 @@ public class BilheteEletronico {
     }
 
     public void setPoltrona(int poltrona) {
-        this.poltrona = poltrona;
+        if(poltrona <= viagem.getOnibus().getCapacidade()) {
+            this.poltrona = poltrona;
+        }
     }
 
 }
