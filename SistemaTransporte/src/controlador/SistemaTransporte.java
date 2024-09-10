@@ -191,6 +191,74 @@ public class SistemaTransporte {
     }
     
     //MÉTODOS DA CLASSE PASSAGEIROS ====================================================================================
+    
+    public String getPassageiroNomePorPosicao(int numeroOnibus, int posicao) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                return onibus.get(i).buscarPassageiroPosicao(posicao).getNome();
+            }
+        }
+        return null;
+    }
+    
+    public int getPassageiroTelefonePorNome(int numeroOnibus, String nome) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                return onibus.get(i).buscarPassageiroNome(nome).getTelefone();
+            }
+        }
+        return -1;
+    }
+    
+    public int getPassageiroIdadePorNome(int numeroOnibus, String nome) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                return onibus.get(i).buscarPassageiroNome(nome).getIdade();
+            }
+        }
+        return -1;
+    }
+    
+    public String getPassageiroCpfPorNome(int numeroOnibus, String nome) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                return onibus.get(i).buscarPassageiroNome(nome).getCpf();
+            }
+        }
+        return null;
+    }
+    
+    public void setPassageiroNomePorPosicao(int numeroOnibus, int posicao, String nome) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                this.onibus.get(i).buscarPassageiroPosicao(posicao).setNome(nome);
+            }
+        }
+    }
+    
+    public void setPassageiroTelefonePorNome(int numeroOnibus, String nome, int telefone) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                this.onibus.get(i).buscarPassageiroNome(nome).setTelefone(telefone);
+            }
+        }
+    }
+    
+    public void setPassageiroIdadePorNome(int numeroOnibus, String nome, int idade) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                this.onibus.get(i).buscarPassageiroNome(nome).setIdade(idade);
+            }
+        }
+    }
+    
+    public void setPassageiroCpfPorNome(int numeroOnibus, String nome, String cpf) {
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                this.onibus.get(i).buscarPassageiroNome(nome).setCpf(cpf);
+            }
+        }
+    }
             
     //MÉTODOS DA CLASSE MOTORISTA ====================================================================================
     
