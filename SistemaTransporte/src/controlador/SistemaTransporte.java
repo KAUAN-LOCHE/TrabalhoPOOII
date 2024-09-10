@@ -10,7 +10,7 @@ import modelo.Passageiro;
 import modelo.StatusViagem;
 import modelo.Viagem;
 import java.util.ArrayList;
-
+import modelo.Motorista;
 /**
  *
  * @author kauan
@@ -148,18 +148,19 @@ public class SistemaTransporte {
     }
     
     public void setMotorista(int numeroOnibus, Motorista motorista) {
-         for(int i = 0; i < this.onibus.size(); i++){
-        if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-            onibus.get(i).setMotorista(motorista);
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                onibus.get(i).setMotorista(motorista);
+            }
         }
     }
          
     public Motorista getMotorista(int numeroOnibus){
-         for(int i = 0; i < this.onibus.size(); i++){
-        if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-            return onibus.get(i).getMotorista();
+        for(int i = 0; i < this.onibus.size(); i++){
+            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
+                return onibus.get(i).getMotorista();
+            }
         }
-    }
     return null;
     }
     
@@ -170,8 +171,6 @@ public class SistemaTransporte {
             }
         }
     }
-
-    
     public boolean RemoverPassageiro(int numeroOnibus, String nome){
          for(int i = 0; i < this.onibus.size(); i++){
             if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
