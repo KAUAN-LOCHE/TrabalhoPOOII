@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class BilheteEletronico {
     private Passageiro passageiro;
-   private Viagem viagem;
+    private Viagem viagem;
     private LocalDateTime dataHora;
     private int plataforma; //Não tenho ctz se plataforma e poltrona deveriam ser int
     private int poltrona;
@@ -23,9 +23,9 @@ public class BilheteEletronico {
         return passageiro;
     }
 
-    public viagem getViagem() {
+    /*public viagem getViagem() {
         return viagem;
-    }
+    }*/
 
     public LocalDateTime getDataHora() {
         return dataHora;
