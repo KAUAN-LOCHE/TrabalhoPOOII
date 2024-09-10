@@ -5,7 +5,7 @@
 package controlador;
 import modelo.BilheteEletronico;
 import modelo.Onibus;
-import modelo.Parada;
+import modelo.Parada as Parada;
 import modelo.Passageiro;
 import modelo.StatusViagem;
 import modelo.Viagem;
@@ -19,6 +19,7 @@ public class SistemaTransporte {
     private ArrayList<Onibus> onibus;
     private ArrayList<Motorista> motoristas;
     private ArrayList<Viagem> viagens;
+    private ArrayList<Parada> paradas;
     
     public SistemaTransporte(){
         onibus = new ArrayList<>();
@@ -198,6 +199,12 @@ public class SistemaTransporte {
     //MÉTODOS DA CLASSE PAGAMENTO PASSAGEM ====================================================================================
     
     //MÉTODOS DA CLASSE PARADA ====================================================================================
+    
+    // Definindo valores que serão utilizados na instanciação de objetos pertencentes à classe Parada
+    
+    String[] stopNames = ["Maplewood Grove", "Cedar Hill Estates", "Riverside Meadows", "Willow Creek Village", "Sunnyvale Heights", "Pinecrest Park", "Oakridge Hollow", "Silver Lake Shores", "Briarwood Commons", "Elm Street Junction"]
+    Parada parada = new Parada();
+    
     
     //MÉTODOS DA CLASSE HORARIONIBUS ====================================================================================
     
