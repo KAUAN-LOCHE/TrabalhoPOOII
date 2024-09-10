@@ -57,7 +57,7 @@ public class Parada {
 	}
 	
 	// Returns the stop's coordinates
-	String getCoordenadas() {
+	public String getCoordenadas() {
 		return ("Latitude: " + this.latitude +
 				"\nLongitude: " + this.longitude);
 	}
@@ -65,6 +65,8 @@ public class Parada {
 	public boolean isOperational(){
 		return this.operacional; // Some condition can be checked in the future for this method to be relevant
 	}
+	
+	
 	
 	// GETTERS AND SETTERS ==================================================================================================================================
 	public String getCidade() {
