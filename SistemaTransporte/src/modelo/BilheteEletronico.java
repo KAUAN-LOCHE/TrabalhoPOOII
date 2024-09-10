@@ -13,9 +13,11 @@ public class BilheteEletronico {
     private int poltrona;
     private final UUID id;
 
-    public BilheteEletronico(Passageiro passageiro, Viagem viagem, LocalDateTime dataHora, int plataforma, int poltrona) {
+    public BilheteEletronico(Passageiro passageiro, Viagem viagem, Parada embarque, Parada desembarque, LocalDateTime dataHora, int plataforma, int poltrona) {
         setPassageiro(passageiro);
         setViagem(viagem);
+        setEmbarque(embarque);
+        setDesembarque(desembarque);
         setDataHora(dataHora);
         setPlataforma(plataforma);
         setPoltrona(poltrona);
