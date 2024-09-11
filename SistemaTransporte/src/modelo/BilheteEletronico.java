@@ -8,35 +8,33 @@ public class BilheteEletronico {
     private Viagem viagem;
     private Parada embarque;
     private Parada desembarque;
-    private LocalDateTime dataHora;
-    private int plataforma; //Não tenho ctz se plataforma e poltrona deveriam ser int
+    private LocalDateTime dataHoraSaida;
+    private LocalDateTime dataHoraChegada;
     private int poltrona;
     private final UUID id;
 
-    public BilheteEletronico(Passageiro passageiro, Viagem viagem, Parada embarque, Parada desembarque, LocalDateTime dataHora, int plataforma, int poltrona) {
+    //Método construtor
+    public BilheteEletronico(Passageiro passageiro, Viagem viagem, int indiceEmbarque, int indiceDesembarque, int poltrona) {
         setPassageiro(passageiro);
         setViagem(viagem);
-        setEmbarque(embarque);
-        setDesembarque(desembarque);
-        setDataHora(dataHora);
-        setPlataforma(plataforma);
+        setDadosViagem(indiceEmbarque, indiceDesembarque);
         setPoltrona(poltrona);
         this.id = UUID.randomUUID();
     }
 
-    public String dados() {
+    //Método de exibição de dados
+    public String exibirDados() {
         return "Passageiro: " + passageiro.getNome()
                 + "\nCPF: " + passageiro.getCpf()
-                + "\nData de saída prevista: " + viagem.getDataHoraSaidaPrevista()
-                + "\nData de chegada prevista: " + viagem.getDataHoraChegadaPrevista()
                 + "\nEmbarque: " + embarque.getEnderecoFormatado()
                 + "\nDesembarque: " + desembarque.getEnderecoFormatado()
-                + "\nPlataforma: " + plataforma
+                + "\nData de saída prevista: " + viagem.getDataHoraSaidaPrevista()
+                + "\nData de chegada prevista: " + viagem.getDataHoraChegadaPrevista()
                 + "\nPoltrona: " + poltrona
                 + "\nID: " + id;
     }
 
-    //gettters
+    //Getters
     public Passageiro getPassageiro() {
         return passageiro;
     }
@@ -53,12 +51,12 @@ public class BilheteEletronico {
         return desembarque;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDateTime getDataHoraSaida() {
+        return dataHoraSaida;
     }
 
-    public int getPlataforma() {
-        return plataforma;
+    public LocalDateTime getDataHoraChegada() {
+        return dataHoraChegada;
     }
 
     public int getPoltrona() {
@@ -69,7 +67,7 @@ public class BilheteEletronico {
         return id;
     }
 
-    //setters
+    //Setters
     public void setPassageiro(Passageiro passageiro) {
         this.passageiro = passageiro;
     }
@@ -78,20 +76,19 @@ public class BilheteEletronico {
         this.viagem = viagem;
     }
 
-    public void setEmbarque(Parada embarque) {
-        this.embarque = embarque;
-    }
-
-    public void setDesembarque(Parada desembarque) {
-        this.desembarque = desembarque;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-
-    public void setPlataforma(int plataforma) {
-        this.plataforma = plataforma;
+    public void setDadosViagem(int indiceEmbarque, int indiceDesembarque) {
+        if(indiceEmbarque < indiceDesembarque) {
+            for(int i = 0; i < this.viagem.getParadas().size(); i++) {
+                if(i == indiceEmbarque) {
+                    this.embarque = this.viagem.getParadas().get(i);
+                    this.dataHoraSaida = this.viagem.getDataHoraSaidaPrevista().get(i);
+                }
+                if(i == indiceDesembarque) {
+                    this.desembarque = this.viagem.getParadas().get(i);
+                    this.dataHoraChegada = this.viagem.getDataHoraChegadaPrevista().get(i);
+                }
+            }
+        }
     }
 
     public void setPoltrona(int poltrona) {

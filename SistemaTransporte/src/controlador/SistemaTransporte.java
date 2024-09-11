@@ -11,6 +11,8 @@ import modelo.StatusViagem;
 import modelo.Viagem;
 import modelo.HorarioOnibus;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.UUID;
 import modelo.Motorista;
 /**
  *
@@ -21,6 +23,7 @@ public class SistemaTransporte {
     private ArrayList<Motorista> motoristas;
     private ArrayList<Viagem> viagens;
     private ArrayList<Parada> paradas;
+    private ArrayList<BilheteEletronico> bilhetesEletronicos;
     
     public SistemaTransporte(){
         onibus = new ArrayList<>();
@@ -278,4 +281,109 @@ public class SistemaTransporte {
     //MÉTODOS DA CLASSE HORARIONIBUS ====================================================================================
     
     //MÉTODOS DA CLASSE BILHETEELETRÔNICO ====================================================================================
+
+    public String exibirDados(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return this.bilhetesEletronicos.get(i).exibirDados();
+            }
+        }
+    }
+
+    public Passageiro getPassageiro(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getPassageiro();
+            }
+        }
+    }
+
+    public Viagem getViagem(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getViagem();
+            }
+        }
+    }
+
+    public Parada getEmbarque(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getEmbarque();
+            }
+        }
+    }
+
+    public Parada getDesembarque(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getEmbarque();
+            }
+        }
+    }
+
+    public LocalDateTime getDataHoraSaida(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getDataHoraSaida();
+            }
+        }
+    }
+
+    public LocalDateTime getDataHoraChegada(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getDataHoraChegada();
+            }
+        }
+    }
+
+    public int getPoltrona(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getPoltrona();
+            }
+        }
+    }
+
+    public UUID getID(UUID id) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getID();
+            }
+        }
+    }
+
+    public void setPassageiro(UUID id, Passageiro passageiro) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                bilhetesEletronicos.get(i).setPassageiro(passageiro);
+            }
+        }
+    }
+    
+    public void setViagem(UUID id, Viagem viagem) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                bilhetesEletronicos.get(i).setViagem(viagem);
+            }
+        }
+    }
+
+    public void setDadosViagem(UUID id, int indiceEmbarque, int indiceDesembarque) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                bilhetesEletronicos.get(i).setDadosViagem(indiceEmbarque, indiceDesembarque);
+            }
+        }
+    }
+
+    public void setPoltrona(UUID id, int poltrona) {
+        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                bilhetesEletronicos.get(i).setPoltrona(poltrona);
+            }
+        }
+    }
+
 }
