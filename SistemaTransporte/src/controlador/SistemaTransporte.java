@@ -273,11 +273,7 @@ public class SistemaTransporte {
     //MÉTODOS DA CLASSE PARADA ====================================================================================
     
     // Definindo valores que serão utilizados na instanciação de objetos pertencentes à classe Parada
-    
-    String[] stopNames = ["Maplewood Grove", "Cedar Hill Estates", "Riverside Meadows", "Willow Creek Village", "Sunnyvale Heights", "Pinecrest Park", "Oakridge Hollow", "Silver Lake Shores", "Briarwood Commons", "Elm Street Junction"]
-    Parada parada = new Parada();
-    
-    
+   
     //MÉTODOS DA CLASSE HORARIONIBUS ====================================================================================
     
     //MÉTODOS DA CLASSE BILHETEELETRÔNICO ====================================================================================
@@ -288,6 +284,7 @@ public class SistemaTransporte {
                 return this.bilhetesEletronicos.get(i).exibirDados();
             }
         }
+        return null;
     }
 
     public Passageiro getPassageiro(UUID id) {
@@ -296,6 +293,8 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getPassageiro();
             }
         }
+        return null;
+
     }
 
     public Viagem getViagem(UUID id) {
@@ -304,6 +303,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getViagem();
             }
         }
+        return null;
     }
 
     public Parada getEmbarque(UUID id) {
@@ -312,6 +312,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getEmbarque();
             }
         }
+        return null;
     }
 
     public Parada getDesembarque(UUID id) {
@@ -320,6 +321,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getEmbarque();
             }
         }
+        return null;
     }
 
     public LocalDateTime getDataHoraSaida(UUID id) {
@@ -328,6 +330,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getDataHoraSaida();
             }
         }
+        return null;
     }
 
     public LocalDateTime getDataHoraChegada(UUID id) {
@@ -336,6 +339,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getDataHoraChegada();
             }
         }
+        return null;
     }
 
     public int getPoltrona(UUID id) {
@@ -344,6 +348,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getPoltrona();
             }
         }
+        return -1;
     }
 
     public UUID getID(UUID id) {
@@ -352,6 +357,7 @@ public class SistemaTransporte {
                 return bilhetesEletronicos.get(i).getID();
             }
         }
+        return null;
     }
 
     public void setPassageiro(UUID id, Passageiro passageiro) {
