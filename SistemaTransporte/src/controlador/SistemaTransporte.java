@@ -9,6 +9,7 @@ import modelo.Parada as Parada;
 import modelo.Passageiro;
 import modelo.StatusViagem;
 import modelo.Viagem;
+import modelo.HorarioOnibus;
 import java.util.ArrayList;
 import modelo.Motorista;
 /**
