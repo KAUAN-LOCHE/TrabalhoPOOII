@@ -82,8 +82,8 @@ public class HorarioOnibus {
     
     public void listarHorarios() {
         for (int i = 0; i < onibus.size(); i++) {
-            System.out.println("Ônibus: " + onibus.get(i).getId() + //nao colocaram getter na classe, nao vou mexer por enqt pra nao prejudicar a classe do outro
-                               " | Parada: " + parada.get(i).getNome() + //nao colocaram getter na classe, nao vou mexer por enqt pra nao prejudicar a classe do outro
+            System.out.println("Ônibus: " + onibus.get(i).getNumero()+ //nao colocaram getter na classe, nao vou mexer por enqt pra nao prejudicar a classe do outro
+                               " | Parada: " + parada.get(i).getId()+ //nao colocaram getter na classe, nao vou mexer por enqt pra nao prejudicar a classe do outro
                                " | Horário: " + horarios.get(i).toString());
         }
     }
