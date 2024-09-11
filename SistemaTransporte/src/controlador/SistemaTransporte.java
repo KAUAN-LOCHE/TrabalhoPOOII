@@ -5,7 +5,7 @@
 package controlador;
 import modelo.BilheteEletronico;
 import modelo.Onibus;
-import modelo.Parada as Parada;
+import modelo.Parada;
 import modelo.Passageiro;
 import modelo.StatusViagem;
 import modelo.Viagem;
