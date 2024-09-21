@@ -4,7 +4,7 @@
 ## Descrição
 -  Descreva aqui as mudanças feitas nessa branch
 
-## Checklist de qualidade
+## Checklist de qualidade <!-- se for chore, não precisa preencher -->
 - [ ] Documentei os métodos
 - [ ] Usei algo de POO (polimorfismo, interface, ou herança)
 - [ ] Atualizei o card no Trello
