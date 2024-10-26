@@ -1,18 +1,37 @@
 package modelo;
 
-public class Passageiro extends Pessoa implements Cloneable{
+public class Passageiro implements Cloneable{
     //atributos
+    private String nome;
+    private int idade;
     private int telefone;
     private String cpf;
 
     //método construtor
     public Passageiro(String nome, int idade, int telefone, String cpf) {
-        super(nome, idade);
+        this.nome = nome;
+        this.idade = idade;
         this.telefone = telefone;
         this.cpf = cpf;
     }
     
-    //métodos getters e setters
+    //métodos getters e setters dos atributos nome, idade, telefone e cpf do passageiro
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+    
     public void setTelefone(int telefone){
         this.telefone = telefone;
     }
@@ -29,14 +48,7 @@ public class Passageiro extends Pessoa implements Cloneable{
         this.cpf = cpf;
     }
     
-    @Override
-    public void exibirInfo() {
-        super.exibirInfo();
-        System.out.println("Telefone: " + telefone);
-        System.out.println("CPF: " + cpf);
-    }
-    
-    @Override
+     @Override
     public Passageiro clone(){
         Passageiro passageiro;
         try{

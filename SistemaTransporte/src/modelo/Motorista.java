@@ -8,19 +8,30 @@ package modelo;
  *
  * @author kauan
  */
-public class Motorista extends Pessoa{
+public class Motorista {
  
+    private String nome;
     private String cnh; 
+    private int idade;
     private int experiencia; 
     private String empresa;  
     private String linhaOnibus;
 
     public Motorista(String nome, String cnh, int idade, int experiencia, String empresa, String linhaOnibus) {
-        super(nome, idade);
+        this.nome = nome;
         this.cnh = cnh;
+        this.idade = idade;
         this.experiencia = experiencia;
         this.empresa = empresa;
         this.linhaOnibus = linhaOnibus;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCnh() {
@@ -29,6 +40,14 @@ public class Motorista extends Pessoa{
 
     public void setCnh(String cnh) {
         this.cnh = cnh;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public int getExperiencia() {
@@ -55,10 +74,11 @@ public class Motorista extends Pessoa{
         this.linhaOnibus = linhaOnibus;
     }
 
-    @Override
+    
     public void exibirInfo() {
-        super.exibirInfo();
+        System.out.println("Nome do Motorista: " + nome);
         System.out.println("CNH: " + cnh);
+        System.out.println("Idade: " + idade + " anos");
         System.out.println("Experiência de: " + experiencia + " anos dirigindo");
         System.out.println("Empresa: " + empresa);
         System.out.println("Faz a linha: " + linhaOnibus);
