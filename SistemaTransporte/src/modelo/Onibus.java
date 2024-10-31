@@ -3,19 +3,43 @@ package modelo;
 
 import java.util.ArrayList;
 
- 
+/**
+ * Classe que representa um ônibus no sistema de transporte.
+ * Cada ônibus possui uma rota, capacidade, número, quantidade de passageiros, um vetor de passageiros e um motorista.
+ */
+
 public class Onibus{
-   // private String nome;
+    /**
+     * Atributos
+     * rota: inteiro que representa a rota do ônibus
+     * capacidade: inteiro que representa a capacidade do ônibus
+     * numero: inteiro que representa o número do ônibus
+     * quantidade: inteiro que representa a quantidade de passageiros no ônibus
+     * passageiros: vetor de passageiros que representa os passageiros no ônibus
+     * motorista: objeto da classe Motorista que representa o motorista do ônibus
+     * 
+     */
     private int rota, capacidade, numero, quantidade;
     private Passageiro passageiros[];
     private Motorista motorista;
+
+    //Construtor
     public Onibus(){
     }
+
+
+    /**
+     * Construtor da classe Onibus
+     * @param capacidade
+     * @param motorista
+     * @param numero
+     * @param rota
+     */
     
     public Onibus(int capacidade, Motorista motorista, int numero, int rota){
         this.numero = numero;
         this.rota = rota;
-        this.numero = this.numero;
+        this.numero = numero;
         this.capacidade = capacidade;
         passageiros = new Passageiro[capacidade];
         this.quantidade  = 0;
@@ -23,75 +47,95 @@ public class Onibus{
         inicializarPassageiros();
     }
 
-    //Inicialização do Vetor
+    /**
+     * Método que inicializa o vetor de passageiros do ônibus
+     */
     public void inicializarPassageiros(){
         for(int i = 0; i < capacidade; i++){
             this.passageiros[i] = null;
         }
     }
 
-    //Retorna o motorista
+    /**
+     * Método que retorna o motorista do ônibus
+     * @return motorista do ônibus
+     */
     public Motorista getMotorista() {
         return motorista;
     }
 
-    //Seta o motorista
+    /**
+     * Método que determina o motorista do ônibus
+     * @param motorista
+     */
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
     }
 
-    //Retorna capacidade
+    /**
+     * Método que retorna a capacidade do ônibus
+     * @return
+     */
     public int getCapacidade() {
         return capacidade;
     }
-    //Determina a capacidade
+
+    /**
+     * Método que determina a capacidade do ônibus
+     * @param capacidade
+     */
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
     
-    //Retorna a Rota
+    /**
+     * Método que retorna a rota do ônibus
+     * @return
+     */
     public int getRota() {
         return rota;
     }
 
-    //Determina a rota
+    /**
+     * Método que determina a rota do ônibus
+     * @param rota
+     */
     public void setRota(int rota) {
         this.rota = rota;
     }
     
-    //Retorna  o numero
+    /**
+     * Método que retorna o número do ônibus
+     * @return
+     */
     public int getNumero() {
         return numero;
     }
     
-    //Retorna a quantidade de passageiros cadastrados no Onibus
-
+    /**
+     * Método que retorna a quantidade de passageiros no ônibus
+     * @return
+     */
     public int getQuantidade() {
         return quantidade;
     }
     
-
-    //Determina o numero
+    /**
+     * Método que determina o número do ônibus
+     * @param numero
+     */
     public void setNumero(int numero) {
         this.numero = numero;
     }
     
-    //Retorna os passageiros do onibus
+    /**
+     * Método que retorna o vetor de passageiros do ônibus
+     * @return
+     */
     public Passageiro[] getPassageiros(){
         return passageiros;
     }
     
-    //Exibir Passageiros
-    public void exibirPassageiros(){
-        System.out.println("\nLISTA DE PASSAGEIROS");
-        System.out.println("\nMotorista: " + motorista.getNome() );
-        for(int i = 0; i < capacidade; i++){
-            if(passageiros[i] == null){
-                System.out.println("\t" + (i+1) + ": " + "Espaço Vago");
-           }
-            else System.out.println("\t" + (i+1) + ": " + passageiros[i].getNome());
-        }
-    }
     
     //Adicionar passageiro no onibus na primeira posição disponível
     public boolean adicionarPassageiro(Passageiro passageiro){
