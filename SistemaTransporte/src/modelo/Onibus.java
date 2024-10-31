@@ -137,7 +137,11 @@ public class Onibus{
     }
     
     
-    //Adicionar passageiro no onibus na primeira posição disponível
+    /**
+     * Método que adiciona um passageiro ao ônibus pela primeira posição vaga
+     * @param passageiro
+     * @return
+     */
     public boolean adicionarPassageiro(Passageiro passageiro){
         //Verifica se está cheio
         if(quantidade > capacidade) return false;
@@ -152,8 +156,15 @@ public class Onibus{
         return false;
     }
     
-    //Adicionar passageiro no onibus em determinada posicao vaga
-    public boolean adicionarPassageiroPosicao(Passageiro passageiro, int posicao){
+    /**
+     * Método que adiciona um passageiro ao ônibus em uma posição específica
+     * Utilização de polimorfismo
+     * 
+     * @param passageiro
+     * @param posicao
+     * @return
+     */
+    public boolean adicionarPassageiro(Passageiro passageiro, int posicao){
         //Verifica se está cheio
         if(quantidade > capacidade) return false;
         if(posicao < 1 || posicao > capacidade) return false;
@@ -167,8 +178,13 @@ public class Onibus{
     }
     
     
-    //Buscar passageiro no onibus por nome
-    public Passageiro buscarPassageiroNome(String nome){
+    /**
+     * Método que busca um passageiro no ônibus pelo nome
+     * 
+     * @param nome
+     * @return
+     */
+    public Passageiro buscarPassageiro(String nome){
         if(quantidade == 0) return null;
         
         for(int i = 0; i < capacidade; i++){
@@ -180,15 +196,24 @@ public class Onibus{
         return null;
     }
     
-    //Buscar passageiro no onibus por posicao
-    public Passageiro buscarPassageiroPosicao(int posicao){
+
+    /**
+     * Método que busca um passageiro no ônibus pela posição
+     * Utilização de polimorfismo
+     * @param posicao
+     * @return
+     */
+    public Passageiro buscarPassageiro(int posicao){
         if(quantidade == 0) return null;
         if(posicao < 1 || posicao > capacidade) return null;
 
        return passageiros[posicao - 1].clone();
     }
     
-    //Remove todos os passageiros
+    /**
+     * Método que remove todos os passageiros do ônibus
+     * @return
+     */
     public boolean RemoverTodosPassageiro(){
         for(int i = 0; i < capacidade; i++){
             passageiros[i] = null;
@@ -196,7 +221,11 @@ public class Onibus{
         return true;
     }
     
-    //Remove Passageiro que corresponde ao nome inserido
+    /**
+     * Método que remove um passageiro do ônibus pelo nome
+     * @param nome
+     * @return
+     */
     public boolean RemoverPassageiro(String nome){
         for(int i = 0; i < capacidade; i++){
             if(passageiros[i] != null){
@@ -209,6 +238,22 @@ public class Onibus{
         }
         return false;
     }
-    
- 
+
+    /**
+     * Método que remove um passageiro do ônibus pela posição
+     * Utilização de polimorfismo
+     * 
+     * @param posicao
+     * @return
+     */
+    public boolean RemoverPassageiro(int posicao){
+        if(posicao < 1 || posicao > capacidade) return false;
+        if(passageiros[posicao-1] != null){
+            passageiros[posicao-1] = null;
+            quantidade--;
+            return true;
+        }
+        return false;
+    }
+
 }
