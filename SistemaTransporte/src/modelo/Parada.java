@@ -3,6 +3,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import modelo.enums.StatusViagem;
+
 public class Parada {
 
 	

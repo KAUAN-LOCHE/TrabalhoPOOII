@@ -1,18 +1,22 @@
 package modelo;
 
+import modelo.enums.TipoAssento;
+
 public class Passageiro implements Cloneable{
     //atributos
     private String nome;
     private int idade;
     private int telefone;
     private String cpf;
+    private TipoAssento tipoAssento;
 
     //método construtor
-    public Passageiro(String nome, int idade, int telefone, String cpf) {
+    public Passageiro(String nome, int idade, int telefone, String cpf, TipoAssento tipoAssento) {
         this.nome = nome;
         this.idade = idade;
         this.telefone = telefone;
         this.cpf = cpf;
+        this.tipoAssento = tipoAssento;
     }
     
     //métodos getters e setters dos atributos nome, idade, telefone e cpf do passageiro
@@ -46,6 +50,14 @@ public class Passageiro implements Cloneable{
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public TipoAssento getTipoAssento() {
+        return tipoAssento;
+    }
+
+    public void setTipoAssento(TipoAssento tipoAssento) {
+        this.tipoAssento = tipoAssento;
     }
     
      @Override
