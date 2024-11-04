@@ -5,6 +5,8 @@ package modelo;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import modelo.enums.MetodoPagamento;
+
 public class PagamentoPassagem {
     private final UUID id;
     private Passageiro passageiro;

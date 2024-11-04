@@ -7,8 +7,8 @@ import modelo.BilheteEletronico;
 import modelo.Onibus;
 import modelo.Parada;
 import modelo.Passageiro;
-import modelo.StatusViagem;
 import modelo.Viagem;
+import modelo.enums.StatusViagem;
 import modelo.HorarioOnibus;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -45,57 +45,7 @@ public class SistemaTransporte {
     
     //MÉTODO RELATIVOS À CLASSE ÔNIBUS ========================================================================================
     
-    public Passageiro buscarPassageiroPosicao(int numeroOnibus, int posicao){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).buscarPassageiroPosicao(posicao);
-            }
-        }
-        return null;
-    }
-    
-    public boolean adicionarPassageiroPosicao(int numeroOnibus, Passageiro passageiro, int posicao){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).adicionarPassageiroPosicao(passageiro, posicao);
-            }
-        }
-        return false;
-    }
-    public Passageiro buscarPassageiroNome(int numeroOnibus, String nome){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).buscarPassageiroNome(nome);
-            }
-        }
-        return null;
-    }
-    
-    public boolean adicionarPassageiro(int numeroOnibus, Passageiro passageiro){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).adicionarPassageiro(passageiro);
-            }
-        }
-        return false;
-    }
-    
-    public void exibirPassageiros(int numeroOnibus){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                onibus.get(i).exibirPassageiros();
-            }
-        }
-    }
-    
-    public Passageiro[] getPassageiros(int numeroOnibus){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).getPassageiros();
-            }
-        }
-        return null;
-    }
+      
     
     public void setNumero(int numeroOnibus, int numero) {
         for(int i = 0; i < this.onibus.size(); i++){
@@ -109,7 +59,7 @@ public class SistemaTransporte {
 
         for(int i = 0; i < this.onibus.size(); i++){
             if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).getQuantidade();
+                return onibus.get(i).getLotação();
             }
         }
         return -1;
@@ -125,15 +75,6 @@ public class SistemaTransporte {
         return -1;
     }
     
-    public int getRota(int numeroOnibus) {
-
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).getRota();
-            }
-        }
-        return -1;
-    }
     
     public int getCapacidade(int numeroOnibus) {
         for(int i = 0; i < this.onibus.size(); i++){
@@ -142,14 +83,6 @@ public class SistemaTransporte {
         }
     }
     return -1;
-    }
-    
-    public void setCapacidade(int numeroOnibus, int capacidade) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                onibus.get(i).setCapacidade(capacidade);
-            }
-        }
     }
     
     public void setMotorista(int numeroOnibus, Motorista motorista) {
@@ -167,101 +100,6 @@ public class SistemaTransporte {
             }
         }
     return null;
-    }
-    
-    public void inicializarPassageiros(int numeroOnibus){
-         for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                onibus.get(i).inicializarPassageiros();
-            }
-        }
-    }
-    public boolean RemoverPassageiro(int numeroOnibus, String nome){
-         for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).RemoverPassageiro(nome);
-            }
-        }
-         return false;
-    }
-    
-    public boolean RemoverTodosPassageiro(int numeroOnibus){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).RemoverTodosPassageiro();
-            }
-        }
-         return false;
-    }
-    
-    //MÉTODOS DA CLASSE PASSAGEIROS ====================================================================================
-    
-    public String getPassageiroNomePorPosicao(int numeroOnibus, int posicao) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).buscarPassageiroPosicao(posicao).getNome();
-            }
-        }
-        return null;
-    }
-    
-    public int getPassageiroTelefonePorNome(int numeroOnibus, String nome) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).buscarPassageiroNome(nome).getTelefone();
-            }
-        }
-        return -1;
-    }
-    
-    public int getPassageiroIdadePorNome(int numeroOnibus, String nome) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).buscarPassageiroNome(nome).getIdade();
-            }
-        }
-        return -1;
-    }
-    
-    public String getPassageiroCpfPorNome(int numeroOnibus, String nome) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).buscarPassageiroNome(nome).getCpf();
-            }
-        }
-        return null;
-    }
-    
-    public void setPassageiroNomePorPosicao(int numeroOnibus, int posicao, String nome) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                this.onibus.get(i).buscarPassageiroPosicao(posicao).setNome(nome);
-            }
-        }
-    }
-    
-    public void setPassageiroTelefonePorNome(int numeroOnibus, String nome, int telefone) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                this.onibus.get(i).buscarPassageiroNome(nome).setTelefone(telefone);
-            }
-        }
-    }
-    
-    public void setPassageiroIdadePorNome(int numeroOnibus, String nome, int idade) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                this.onibus.get(i).buscarPassageiroNome(nome).setIdade(idade);
-            }
-        }
-    }
-    
-    public void setPassageiroCpfPorNome(int numeroOnibus, String nome, String cpf) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                this.onibus.get(i).buscarPassageiroNome(nome).setCpf(cpf);
-            }
-        }
     }
             
     //MÉTODOS DA CLASSE MOTORISTA ====================================================================================
@@ -324,14 +162,6 @@ public class SistemaTransporte {
         return null;
     }
 
-    public LocalDateTime getDataHoraSaida(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                return bilhetesEletronicos.get(i).getDataHoraSaida();
-            }
-        }
-        return null;
-    }
 
     public LocalDateTime getDataHoraChegada(UUID id) {
         for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
