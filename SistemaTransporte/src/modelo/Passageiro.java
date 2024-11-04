@@ -1,15 +1,13 @@
 package modelo;
 
-public class Passageiro extends Pessoa implements Cloneable{
+public class Passageiro extends UsuarioBase implements Cloneable{
     //atributos
     private int telefone;
-    private String cpf;
 
     //método construtor
-    public Passageiro(String nome, int idade, int telefone, String cpf) {
-        super(nome, idade);
+    public Passageiro(String nome, int idade, String cpf, String UUID, String senha, int telefone) {
+        super(nome, idade, cpf, UUID, senha);
         this.telefone = telefone;
-        this.cpf = cpf;
     }
     
     //métodos getters e setters
@@ -21,19 +19,10 @@ public class Passageiro extends Pessoa implements Cloneable{
         return telefone;
     }
     
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    
     @Override
     public void exibirInfo() {
         super.exibirInfo();
         System.out.println("Telefone: " + telefone);
-        System.out.println("CPF: " + cpf);
     }
     
     @Override

@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author kauan
- */
-public class Motorista extends Pessoa{
+public class Motorista extends UsuarioBase{
  
     private String cnh; 
     private int experiencia; 
     private String empresa;  
     private String linhaOnibus;
 
-    public Motorista(String nome, String cnh, int idade, int experiencia, String empresa, String linhaOnibus) {
-        super(nome, idade);
+    public Motorista(String nome, int idade, String cpf, String UUID, String senha, String cnh, int experiencia, String empresa, String linhaOnibus) {
+        super(nome, idade, cpf, UUID, senha);
         this.cnh = cnh;
         this.experiencia = experiencia;
         this.empresa = empresa;
