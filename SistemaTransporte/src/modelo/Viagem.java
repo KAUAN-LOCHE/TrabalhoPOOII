@@ -1,10 +1,10 @@
 package modelo;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.UUID;
-import modelo.enums.StatusViagem;
 
 public class Viagem {
     private final UUID id;
