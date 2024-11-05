@@ -1,67 +1,109 @@
 package modelo;
 
+import java.util.UUID;
+
 public abstract class UsuarioBase {
 
     private String nome;
     private int idade;
     private String cpf;
-    private String UUID;
+    private final UUID id;
     private String senha;
 
-    public UsuarioBase(String nome, int idade, String cpf, String UUID, String senha) {
+    /**
+     * Construtor da classe UsuarioBase
+     * @param nome
+     * @param idade
+     * @param cpf
+     * @param senha
+     */
+    public UsuarioBase(String nome, int idade, String cpf, String senha) {
         this.nome = nome;
         this.idade = idade;
         this.cpf = cpf;
-        this.UUID = UUID;
         this.senha = senha;
+        this.id = UUID.randomUUID();
     }
 
-    // getters e setters
+    /**
+     * Retorna o nome do UsuarioBase
+     * @return {@code String} nome
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Determina o nome do UsuarioBase
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * Retorna a idade do UsuarioBase
+     * @return {@code int} idade
+     */
     public int getIdade() {
         return idade;
     }
 
+    /**
+     * Determina a idade do UsuarioBase
+     * @param nome
+     */
     public void setIdade(int idade) {
         this.idade = idade;
     }
 
+    /**
+     * Retorna o CPF do UsuarioBase
+     * @return {@code String} cpf
+     */
     public String getCpf() {
         return cpf;
     }
 
+    /**
+     * Determina o cpf do UsuarioBase
+     * @param cpf
+     */
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public String getUUID() {
-        return UUID;
+    /**
+     * Retorna o id do UsuarioBase
+     * @return {@code UUID} id
+     */
+    public UUID getUUID() {
+        return id;
     }
 
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
-    }
-
+    /**
+     * Retorna a senha do UsuarioBase
+     * @return {@code String} senha
+     */
     public String getSenha() {
         return senha;
     }
 
+    /**
+     * Determina a senha do UsuarioBase
+     * @param senha
+     */
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    // metodo para exibir as informacoes do Usuario Base escondendo a senha
+    /**
+     * Imprime os dados do UsuarioBase (menos a senha)
+     */
     public void exibirInfo() {
-        System.out.println("UUID: "+ UUID);
         System.out.println("Nome: " + nome);
         System.out.println("Idade: " + idade + " anos");
         System.out.println("CPF: " + cpf);
+        System.out.println("id de usuario: " + id);
     }
 }
