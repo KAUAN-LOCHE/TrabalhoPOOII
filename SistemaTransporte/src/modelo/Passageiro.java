@@ -2,65 +2,72 @@ package modelo;
 
 import modelo.enums.TipoAssento;
 
-public class Passageiro implements Cloneable{
-    //atributos
-    private String nome;
-    private int idade;
+public class Passageiro extends UsuarioBase implements Cloneable{
+
     private int telefone;
-    private String cpf;
     private TipoAssento tipoAssento;
 
-    //método construtor
-    public Passageiro(String nome, int idade, int telefone, String cpf, TipoAssento tipoAssento) {
-        this.nome = nome;
-        this.idade = idade;
+    /**
+     * Construtor da classe Passageiro
+     * @param nome
+     * @param idade
+     * @param cpf
+     * @param senha
+     * @param tipoAssento comum, plus_size, cadeirante ou idoso
+     */
+    public Passageiro(String nome, int idade, String cpf, String senha, int telefone, TipoAssento tipoAssento) {
+        super(nome, idade, cpf, senha);
         this.telefone = telefone;
-        this.cpf = cpf;
         this.tipoAssento = tipoAssento;
     }
     
-    //métodos getters e setters dos atributos nome, idade, telefone e cpf do passageiro
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-    
+    /**
+     * Determina o telefone do Passageiro
+     * @param telefone
+     */
     public void setTelefone(int telefone){
         this.telefone = telefone;
     }
     
+    /**
+     * Retorna o telefone do Passageiro
+     * @return {@code int} telefone
+     */
     public int getTelefone(){
         return telefone;
     }
-    
-    public String getCpf() {
-        return cpf;
-    }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
+    /**
+     * Retorna o Tipo de Assento do Passageiro
+     * @return {@code tipoAssento} do Passageiro
+     */
     public TipoAssento getTipoAssento() {
         return tipoAssento;
     }
 
+    /**
+     * Determina o Tipo de Assento do Passageiro
+     * @param tipoAssento
+     */
     public void setTipoAssento(TipoAssento tipoAssento) {
         this.tipoAssento = tipoAssento;
     }
     
-     @Override
+    /**
+     * Imprime os dados do Passageiro
+     */
+    @Override
+    public void exibirInfo() {
+        super.exibirInfo();
+        System.out.println("Telefone: " + telefone);
+        System.out.println("Tipo de Assento: " + tipoAssento);
+    }
+
+    /**
+     * Clona e retorna um Passageiro
+     * @return {@code Passageiro}
+     */
+    @Override
     public Passageiro clone(){
         Passageiro passageiro;
         try{
