@@ -9,6 +9,7 @@
 - [ ] Usei algo de POO (polimorfismo, interface, ou herança)
 - [ ] Atualizei o card no Trello
 - [ ] Solicitei revisão pra alguém
+- [ ] Realizei rebase antes de abrir a PR
 
 ## Utilizei a classe de alguém (marque esse alguém)
 - @alguém
