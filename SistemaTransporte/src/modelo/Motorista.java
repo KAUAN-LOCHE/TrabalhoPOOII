@@ -1,84 +1,102 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author kauan
- */
-public class Motorista {
- 
-    private String nome;
+public class Motorista extends UsuarioBase{
+
     private String cnh; 
-    private int idade;
     private int experiencia; 
     private String empresa;  
     private String linhaOnibus;
 
-    public Motorista(String nome, String cnh, int idade, int experiencia, String empresa, String linhaOnibus) {
-        this.nome = nome;
+    /**
+     * Construtor da classe Motorista
+     * @param nome
+     * @param idade
+     * @param cpf
+     * @param senha senha do motorista
+     * @param cnh   carteira nacional de habilitacao
+     * @param experiencia   tempo de experiencia do Motorista
+     * @param empresa
+     * @param linhaOnibus linha de onibus que o motorista conduz
+     */
+    public Motorista(String nome, int idade, String cpf, String senha, String cnh, int experiencia, String empresa, String linhaOnibus) {
+        super(nome, idade, cpf, senha);
         this.cnh = cnh;
-        this.idade = idade;
         this.experiencia = experiencia;
         this.empresa = empresa;
         this.linhaOnibus = linhaOnibus;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
+    /**
+     * Retorna a CNH do Motorista
+     * @return {@code String} cnh
+     */
     public String getCnh() {
         return cnh;
     }
 
+    /**
+     * Determina a CNH do Motorista
+     * @param telefone
+     */
     public void setCnh(String cnh) {
         this.cnh = cnh;
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
+    /**
+     * Retorna o tempo de experiencia do Motorista
+     * @return {@code int} experiencia
+     */
     public int getExperiencia() {
         return experiencia;
     }
 
+    /**
+     * Determina o tempo de experiencia do Motorista
+     * @param experiencia
+     */
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
 
+    /**
+     * Retorna a empresa que o Motorista trabalha
+     * @return {@code String} empresa
+     */
     public String getEmpresa() {
         return empresa;
     }
 
+    /**
+     * Determina a empresa que o Motorista trabalha
+     * @param empresa
+     */
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
 
+    /**
+     * Retorna a linha de Onibus que o Motorista trabalha
+     * @return {@code String} linhaOnibus
+     */
     public String getLinhaOnibus() {
         return linhaOnibus;
     }
 
+    /**
+     * Determina a linha de Onibus que o Motorista trabalha
+     * @param empresa
+     */
     public void setLinhaOnibus(String linhaOnibus) {
         this.linhaOnibus = linhaOnibus;
     }
 
-    
+    /**
+     * Imprime os dados do Motorista
+     */
+    @Override
     public void exibirInfo() {
-        System.out.println("Nome do Motorista: " + nome);
+        super.exibirInfo();
         System.out.println("CNH: " + cnh);
-        System.out.println("Idade: " + idade + " anos");
         System.out.println("Experiência de: " + experiencia + " anos dirigindo");
         System.out.println("Empresa: " + empresa);
         System.out.println("Faz a linha: " + linhaOnibus);
