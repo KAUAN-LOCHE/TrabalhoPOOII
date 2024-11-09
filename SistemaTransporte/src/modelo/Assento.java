@@ -44,6 +44,13 @@ public class Assento {
     }
 
     /**
+     * Remove o passageiro do assento
+     */
+    public void removePassageiro() {
+        this.passageiro = null;
+    }
+
+    /**
      * Retorna o tipo do assento
      * @return {@link TipoAssento}
      */
