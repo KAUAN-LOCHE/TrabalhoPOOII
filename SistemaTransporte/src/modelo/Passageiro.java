@@ -4,8 +4,9 @@ import modelo.enums.TipoAssento;
 
 public class Passageiro extends UsuarioBase implements Cloneable{
 
-    private int telefone;
+    private String telefone;
     private TipoAssento tipoAssento;
+    private boolean emViagem;
 
     /**
      * Construtor da classe Passageiro
@@ -15,25 +16,34 @@ public class Passageiro extends UsuarioBase implements Cloneable{
      * @param senha
      * @param tipoAssento comum, plus_size, cadeirante ou idoso
      */
-    public Passageiro(String nome, int idade, String cpf, String senha, int telefone, TipoAssento tipoAssento) {
+    public Passageiro(String nome, int idade, String cpf, String senha, String telefone, TipoAssento tipoAssento) {
         super(nome, idade, cpf, senha);
         this.telefone = telefone;
         this.tipoAssento = tipoAssento;
+        this.emViagem = false;
+    }
+
+    public void setEmViagem(boolean emViagem) {
+        this.emViagem = emViagem;
+    }
+
+    public boolean getEmViagem() {
+        return this.emViagem;
     }
     
     /**
      * Determina o telefone do Passageiro
      * @param telefone
      */
-    public void setTelefone(int telefone){
+    public void setTelefone(String telefone){
         this.telefone = telefone;
     }
     
     /**
      * Retorna o telefone do Passageiro
-     * @return {@code int} telefone
+     * @return {@code String} telefone
      */
-    public int getTelefone(){
+    public String getTelefone(){
         return telefone;
     }
 

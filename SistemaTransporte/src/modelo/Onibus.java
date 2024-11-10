@@ -1,8 +1,11 @@
 package modelo;
 
-import modelo.enums.TipoAssento;
+import java.util.ArrayList;
 
-public class Onibus {
+import modelo.enums.TipoAssento;
+import modelo.interfaces.Veiculo;
+
+public class Onibus implements Veiculo {
     private final int capacidade;
     private int rota, numero, lotação;
     private Assento[] assentos;
@@ -10,15 +13,18 @@ public class Onibus {
 
     /**
      * Construtor da classe Onibus
+     * 
      * @param capacidade
-     * @param qdeAssentosPlusSize quantidade de assentos dedicados a pessoas grávidas ou obesas
-     * @param qdeAssentoCadeirante quantidade de assentos dedicados a cadeirantes ou deficientes físicos
-     * @param qdeAssentosIdoso quantidade de assentos dedicados a idosos
+     * @param qdeAssentosPlusSize   quantidade de assentos dedicados a pessoas
+     *                              grávidas ou obesas
+     * @param qdeAssentosCadeirante quantidade de assentos dedicados a cadeirantes
+     *                              ou deficientes físicos
+     * @param qdeAssentosIdoso      quantidade de assentos dedicados a idosos
      * @param motorista
      * @param numero
      * @param rota
      */
-    public Onibus(int capacidade, int qdeAssentosPlusSize, int qdeAssentoCadeirante, int qdeAssentosIdoso,
+    public Onibus(int capacidade, int qdeAssentosPlusSize, int qdeAssentosCadeirante, int qdeAssentosIdoso,
             Motorista motorista, int numero, int rota) {
         this.numero = numero;
         this.rota = rota;
@@ -26,28 +32,30 @@ public class Onibus {
         this.assentos = new Assento[capacidade];
         this.lotação = 0;
         this.motorista = motorista;
-        this.inicializarAssentos(qdeAssentosPlusSize, qdeAssentoCadeirante, qdeAssentosIdoso);
+        this.inicializarAssentos(qdeAssentosPlusSize, qdeAssentosCadeirante, qdeAssentosIdoso);
     }
 
     /**
-     * Inicializa os assentos do ônibus de acordo com a quantidade de assentos especiais
+     * Inicializa os assentos do ônibus de acordo com a quantidade de assentos
+     * especiais
+     * 
      * @param qdeAssentosPlusSize
-     * @param qdeAssentoCadeirante
+     * @param qdeAssentosCadeirante
      * @param qdeAssentosIdoso
      */
-    public void inicializarAssentos(int qdeAssentosPlusSize, int qdeAssentoCadeirante, int qdeAssentosIdoso) {
+    public void inicializarAssentos(int qdeAssentosPlusSize, int qdeAssentosCadeirante, int qdeAssentosIdoso) {
         int posAssento = 0;
-
-        for (; posAssento < qdeAssentoCadeirante; posAssento++) {
-            this.assentos[posAssento + qdeAssentosPlusSize] = new Assento(TipoAssento.CADEIRANTE);
-        }
-
-        for (; posAssento < qdeAssentosIdoso; posAssento++) {
-            this.assentos[posAssento + qdeAssentosPlusSize + qdeAssentoCadeirante] = new Assento(TipoAssento.IDOSO);
-        }
 
         for (; posAssento < qdeAssentosPlusSize; posAssento++) {
             this.assentos[posAssento] = new Assento(TipoAssento.PLUS_SIZE);
+        }
+
+        for (; posAssento < qdeAssentosCadeirante + qdeAssentosPlusSize; posAssento++) {
+            this.assentos[posAssento] = new Assento(TipoAssento.CADEIRANTE);
+        }
+
+        for (; posAssento < qdeAssentosIdoso + qdeAssentosCadeirante + qdeAssentosPlusSize; posAssento++) {
+            this.assentos[posAssento] = new Assento(TipoAssento.IDOSO);
         }
 
         for (; posAssento < this.capacidade; posAssento++) {
@@ -64,6 +72,7 @@ public class Onibus {
 
     /**
      * Determina o motorista do ônibus
+     * 
      * @param motorista
      */
     public void setMotorista(Motorista motorista) {
@@ -72,6 +81,7 @@ public class Onibus {
 
     /**
      * Retorna a capacidade do ônibus
+     * 
      * @return {@code int} capacidade
      */
     public int getCapacidade() {
@@ -80,6 +90,7 @@ public class Onibus {
 
     /**
      * Retorna a rota do ônibus
+     * 
      * @return {@code int} rota
      */
     public int getRota() {
@@ -88,6 +99,7 @@ public class Onibus {
 
     /**
      * Determina a rota do ônibus
+     * 
      * @param rota
      */
     public void setRota(int rota) {
@@ -96,6 +108,7 @@ public class Onibus {
 
     /**
      * Retorna o número do ônibus
+     * 
      * @return {@code int} número
      */
     public int getNumero() {
@@ -104,6 +117,7 @@ public class Onibus {
 
     /**
      * Retorna a lotação do ônibus
+     * 
      * @return {@code int} lotação
      */
     public int getLotacao() {
@@ -112,6 +126,7 @@ public class Onibus {
 
     /**
      * Determina o número do ônibus
+     * 
      * @param numero
      */
     public void setNumero(int numero) {
@@ -120,43 +135,50 @@ public class Onibus {
 
     /**
      * Retorna os assentos do ônibus
+     * 
      * @return {@code Assento[]} assentos
      */
     public Assento[] getAssentos() {
         return assentos;
     }
 
-    /**
-     * Adiciona um passageiro ao ônibus no primeiro assento disponível do tipo do passageiro
-     * @param passageiro Passageiro a ser adicionado
-     * @throws IllegalArgumentException Caso o ônibus esteja cheio
-     * @throws IllegalArgumentException Caso não haja assentos disponíveis para o tipo do passageiro
-     */
-    public void adicionarPassageiro(Passageiro passageiro) {
-        if (this.lotação >= this.capacidade) {
-            throw new IllegalArgumentException("Onibus cheio");
-        }
+    public ArrayList<Number> getPosicoesDisponiveis(TipoAssento tipo) {
+        ArrayList<Number> posicoes = new ArrayList<Number>();
 
         for (int i = 0; i < this.capacidade; i++) {
-            if (this.assentos[i] == null && this.assentos[i].getTipo() == passageiro.getTipoAssento()) {
-                this.assentos[i].setPassageiro(passageiro);
-                this.lotação++;
-                break;
+            Assento assento = this.assentos[i];
+            if (!assento.estaOcupado() && assento.getTipo() == tipo) {
+                posicoes.add(i);
             }
         }
 
-        throw new IllegalArgumentException("Não há assentos disponíveis para o tipo de assento do passageiro");
+        return posicoes;
+    }
+
+    /**
+     * Adiciona um passageiro ao ônibus no primeiro assento disponível do tipo do
+     * passageiro
+     * 
+     * @param passageiro Passageiro a ser adicionado
+     * @throws IllegalArgumentException Caso o ônibus esteja cheio
+     * @throws IllegalArgumentException Caso não haja assentos disponíveis para o
+     *                                  tipo do passageiro
+     */
+    public void adicionarPassageiro(Passageiro passageiro, int numAssento) {
+        this.assentos[numAssento].setPassageiro(passageiro);
+        this.lotação++;
     }
 
     /**
      * Busca o assento de um passageiro pelo CPF
+     * 
      * @param cpf CPF do passageiro
      * @return {@code Assento} do passageiro
      * @throws IllegalArgumentException Caso o passageiro não seja encontrado
      */
-    public Assento buscaAssentoPassageiro(String cpf) {
+    public Assento buscaAssentoPassageiro(Passageiro passageiro) {
         for (int i = 0; i < this.capacidade; i++) {
-            if (this.assentos[i] != null && this.assentos[i].getPassageiro().getCpf().equals(cpf)) {
+            if (this.assentos[i].estaOcupado() && this.assentos[i].getPassageiro().equals(passageiro)) {
                 return this.assentos[i];
             }
         }
@@ -166,18 +188,19 @@ public class Onibus {
 
     /**
      * Remove um passageiro do ônibus
+     * 
      * @param cpf CPF do passageiro
      * @return {@code Passageiro} removido
      */
-    public Passageiro removePassageiro(String cpf) {
-        Assento assento = this.buscaAssentoPassageiro(cpf);
+    public Passageiro removePassageiro(Passageiro passageiro) {
+        Assento assento = this.buscaAssentoPassageiro(passageiro);
 
-        Passageiro passageiro = assento.getPassageiro();
-        
-        assento.setPassageiro(null);
+        Passageiro passageiroRemovido = assento.getPassageiro();
+
+        assento.removePassageiro();
         this.lotação--;
 
-        return passageiro;
+        passageiroRemovido.setEmViagem(false);
+        return passageiroRemovido;
     }
-
 }

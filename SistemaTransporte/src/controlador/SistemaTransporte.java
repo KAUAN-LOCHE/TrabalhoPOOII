@@ -3,15 +3,16 @@ package controlador;
 import modelo.BilheteEletronico;
 import modelo.Onibus;
 import modelo.Parada;
+import modelo.ParadaDecorator;
 import modelo.Passageiro;
 import modelo.Viagem;
 import modelo.enums.StatusViagem;
 import modelo.HorarioOnibus;
 import modelo.Motorista;
-import modelo.*;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import modelo.interfaces.*;
 
 /**
  * A classe SistemaTransporte gerencia a frota de ônibus, motoristas, viagens, paradas e bilhetes eletrônicos.
@@ -22,16 +23,13 @@ public class SistemaTransporte {
     private ArrayList<Onibus> onibus;
     private ArrayList<Motorista> motoristas;
     private ArrayList<Viagem> viagens;
-    private ArrayList<Parada> paradas;
     private ArrayList<BilheteEletronico> bilhetesEletronicos;
 
-    /**
-     * Construtor padrão da classe SistemaTransporte, inicializando as listas de ônibus, motoristas, e viagens.
-     */
     public SistemaTransporte() {
         onibus = new ArrayList<>();
         motoristas = new ArrayList<>();
         viagens = new ArrayList<>();
+        bilhetesEletronicos = new ArrayList<>();
     }
 
     /**
@@ -58,59 +56,58 @@ public class SistemaTransporte {
         return viagens;
     }
 
-    // MÉTODOS RELATIVOS À CLASSE ÔNIBUS ========================================================================================
+    // MÉTODOS RELATIVOS À CLASSE PASSAGEIRO
+    // ========================================================================================
 
-    /**
-     * Define o número de um ônibus específico pelo seu número de identificação atual.
-     * @param numeroOnibus Número atual do ônibus.
-     * @param numero Novo número a ser atribuído ao ônibus.
-     */
+    public Passageiro createPassageiro(String nome, int idade, String cpf, String senha, String endereco,
+            String telefone, TipoAssento tipoAssento) {
+        Passageiro passageiro = new Passageiro(nome, idade, cpf, senha, telefone, tipoAssento);
+        return passageiro;
+    }
+
+    // MÉTODO RELATIVOS À CLASSE ÔNIBUS
+    // ========================================================================================
+
+    public Onibus createOnibus(int capacidade, int qdeAssentosPlusSize, int qdeAssentosCadeirante, int qdeAssentosIdoso,
+            Motorista motorista, int numero, int rota) {
+        Onibus onibus = new Onibus(capacidade, qdeAssentosPlusSize, qdeAssentosCadeirante, qdeAssentosIdoso, motorista,
+                numero, rota);
+        this.onibus.add(onibus);
+        return onibus;
+    }
+
     public void setNumero(int numeroOnibus, int numero) {
-        for (Onibus o : this.onibus) {
-            if (o.getNumero() == numeroOnibus) {
-                o.setNumero(numero);
-                return;
+        for (int i = 0; i < this.onibus.size(); i++) {
+            if (this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus) {
+                onibus.get(i).setNumero(numero);
             }
         }
     }
 
-    /**
-     * Retorna a lotação atual de um ônibus especificado pelo seu número de identificação.
-     * @param numeroOnibus Número do ônibus.
-     * @return Número de passageiros no ônibus, ou -1 se o ônibus não for encontrado.
-     */
     public int getQuantidade(int numeroOnibus) {
-        for (Onibus o : this.onibus) {
-            if (o.getNumero() == numeroOnibus) {
-                return o.getLotacao();
+
+        for (int i = 0; i < this.onibus.size(); i++) {
+            if (this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus) {
+                return onibus.get(i).getLotação();
             }
         }
         return -1;
     }
 
-    /**
-     * Retorna o número de um ônibus específico pelo seu número de identificação atual.
-     * @param numeroOnibus Número do ônibus.
-     * @return Número do ônibus, ou -1 se o ônibus não for encontrado.
-     */
     public int getNumero(int numeroOnibus) {
-        for (Onibus o : this.onibus) {
-            if (o.getNumero() == numeroOnibus) {
-                return o.getNumero();
+
+        for (int i = 0; i < this.onibus.size(); i++) {
+            if (this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus) {
+                return onibus.get(i).getNumero();
             }
         }
         return -1;
     }
 
-    /**
-     * Retorna a capacidade total de assentos de um ônibus especificado pelo seu número de identificação.
-     * @param numeroOnibus Número do ônibus.
-     * @return Capacidade do ônibus, ou -1 se o ônibus não for encontrado.
-     */
     public int getCapacidade(int numeroOnibus) {
-        for (Onibus o : this.onibus) {
-            if (o.getNumero() == numeroOnibus) {
-                return o.getCapacidade();
+        for (int i = 0; i < this.onibus.size(); i++) {
+            if (this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus) {
+                return onibus.get(i).getCapacidade();
             }
         }
         return -1;
@@ -262,7 +259,7 @@ public class SistemaTransporte {
         }
         return null;
     }
-}
+
 
 
 
@@ -286,18 +283,89 @@ public class SistemaTransporte {
     
     //MÉTODOS DA CLASSE BILHETEELETRÔNICO ====================================================================================
 
-    public String exibirDados(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                return this.bilhetesEletronicos.get(i).exibirDados();
+
+    // MÉTODOS DA CLASSE MOTORISTA
+    // ====================================================================================
+
+    public Motorista createMotorista(String nome, int idade, String cpf, String senha, String cnh, int experiencia,
+            String empresa, String linhaOnibus) {
+        Motorista motorista = new Motorista(nome, idade, cpf, senha, cnh, experiencia, empresa, linhaOnibus);
+        this.motoristas.add(motorista);
+        return motorista;
+    }
+
+    // MÉTODOS DA CLASSE VIAGEM
+    // ====================================================================================
+
+    // MÉTODOS DA CLASSE VIAGEM ÔNIBUS
+    // ====================================================================================
+
+    public Viagem createViagemOnibus(Onibus onibus, ArrayList<ParadaDecorator> paradas) {
+        Viagem viagem = new ViagemOnibus(onibus, paradas);
+        this.viagens.add(viagem);
+        return viagem;
+    }
+
+    public ArrayList<Viagem> getAllViagensOnibusByDestino(ParadaDecorator destino, TipoAssento tipoAssento) {
+        ArrayList<Viagem> viagensDisponiveis = new ArrayList<Viagem>();
+
+        this.viagens.forEach(viagem -> {
+            if (viagem.getParadas().contains(destino) && temAssentoDisponivel(viagem.getVeiculo(), tipoAssento)) {
+                viagensDisponiveis.add(viagem);
+            }
+        });
+
+        if (viagensDisponiveis.isEmpty()) {
+            throw new IllegalArgumentException("Não há viagens disponíveis para o destino selecionado");
+        }
+
+        return viagensDisponiveis;
+    }
+
+    public boolean temAssentoDisponivel(Veiculo veiculo, TipoAssento tipoAssento) {
+        for (int i = 0; i < veiculo.getAssentos().length; i++) {
+            if (veiculo.getAssentos()[i].getTipo() == tipoAssento
+                    && veiculo.getAssentos()[i].getPassageiro() == null) {
+                return true;
             }
         }
-        return null;
+        return false;
+    }
+
+    // MÉTODOS DA CLASSE PAGAMENTO PASSAGEM
+    // ====================================================================================
+
+    // MÉTODOS DA CLASSE PARADA
+    // ====================================================================================
+    public Parada createParada(String endereco) {
+        Parada parada = new Parada(endereco);
+        return parada;
+    }
+
+    public ParadaDecorator createParadaDecorator(Parada parada, LocalDateTime horarioPrevisto) {
+        ParadaDecorator paradaDecorator = new ParadaDecorator(parada, horarioPrevisto);
+        return paradaDecorator;
+    }
+
+    // Definindo valores que serão utilizados na instanciação de objetos
+    // pertencentes à classe Parada
+
+    // MÉTODOS DA CLASSE HORARIONIBUS
+    // ====================================================================================
+
+    // MÉTODOS DA CLASSE BILHETEELETRÔNICO
+    // ====================================================================================
+
+    public BilheteEletronico createBilhete(Passageiro passageiro, Viagem viagem, ParadaDecorator embarque,
+            ParadaDecorator desembarque, int assento, LocalDateTime horarioEmbarque) {
+        BilheteEletronico bilheteEletronico = new BilheteEletronico(passageiro, viagem, embarque, desembarque, assento, horarioEmbarque);
+        this.bilhetesEletronicos.add(bilheteEletronico);
+        return bilheteEletronico;
     }
 
     public Passageiro getPassageiro(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+        for (int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if (this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
                 return bilhetesEletronicos.get(i).getPassageiro();
             }
         }
@@ -306,90 +374,30 @@ public class SistemaTransporte {
     }
 
     public Viagem getViagem(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+        for (int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if (this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
                 return bilhetesEletronicos.get(i).getViagem();
             }
         }
         return null;
     }
 
-    public Parada getEmbarque(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                return bilhetesEletronicos.get(i).getEmbarque();
-            }
-        }
-        return null;
-    }
-
-    public Parada getDesembarque(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                return bilhetesEletronicos.get(i).getEmbarque();
-            }
-        }
-        return null;
-    }
-
-
-    public LocalDateTime getDataHoraChegada(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                return bilhetesEletronicos.get(i).getDataHoraChegada();
-            }
-        }
-        return null;
-    }
-
     public int getPoltrona(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                return bilhetesEletronicos.get(i).getPoltrona();
+        for (int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if (this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+                return bilhetesEletronicos.get(i).getNumAssento();
             }
         }
         return -1;
     }
 
     public UUID getID(UUID id) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
+        for (int i = 0; i < this.bilhetesEletronicos.size(); i++) {
+            if (this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
                 return bilhetesEletronicos.get(i).getID();
             }
         }
         return null;
-    }
-
-    public void setPassageiro(UUID id, Passageiro passageiro) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                bilhetesEletronicos.get(i).setPassageiro(passageiro);
-            }
-        }
-    }
-    
-    public void setViagem(UUID id, Viagem viagem) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                bilhetesEletronicos.get(i).setViagem(viagem);
-            }
-        }
-    }
-
-    public void setDadosViagem(UUID id, int indiceEmbarque, int indiceDesembarque) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                bilhetesEletronicos.get(i).setDadosViagem(indiceEmbarque, indiceDesembarque);
-            }
-        }
-    }
-
-    public void setPoltrona(UUID id, int poltrona) {
-        for(int i = 0; i < this.bilhetesEletronicos.size(); i++) {
-            if(this.bilhetesEletronicos.get(i) != null && this.bilhetesEletronicos.get(i).getID().equals(id)) {
-                bilhetesEletronicos.get(i).setPoltrona(poltrona);
-            }
-        }
     }
 
 }
