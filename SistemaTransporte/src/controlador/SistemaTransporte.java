@@ -6,14 +6,15 @@ import modelo.Parada;
 import modelo.ParadaDecorator;
 import modelo.Passageiro;
 import modelo.Viagem;
-import modelo.enums.StatusViagem;
-import modelo.HorarioOnibus;
-import modelo.Motorista;
-import java.util.UUID;
+import modelo.ViagemOnibus;
+import modelo.enums.TipoAssento;
+import modelo.interfaces.Veiculo;
+
 import java.util.ArrayList;
 import java.time.LocalDateTime;
-import modelo.interfaces.*;
+import java.util.UUID;
 
+import modelo.Motorista;
 /**
  * A classe SistemaTransporte gerencia a frota de ônibus, motoristas, viagens, paradas e bilhetes eletrônicos.
  * Ela permite a manipulação de dados como a adição e remoção de ônibus, configuração de motoristas, rotas e 
