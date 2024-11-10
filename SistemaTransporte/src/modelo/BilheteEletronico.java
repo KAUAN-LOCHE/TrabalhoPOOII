@@ -3,38 +3,49 @@ package modelo;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class BilheteEletronico {
-    private Passageiro passageiro;
-    private Viagem viagem;
-    private Parada embarque;
-    private Parada desembarque;
-    private LocalDateTime dataHoraSaida;
-    private LocalDateTime dataHoraChegada;
-    private int poltrona;
+import modelo.enums.StatusViagem;
+import modelo.interfaces.Veiculo;
+import modelo.interfaces.ViagemObserver;
+
+public class BilheteEletronico implements ViagemObserver {
     private final UUID id;
+    private final Passageiro passageiro;
+    private final Viagem viagem;
+    private final ParadaDecorator embarque;
+    private final ParadaDecorator desembarque;
+    private final int numAssento;
+    private StatusViagem status;
+    private LocalDateTime horarioEmbarque;
+    private LocalDateTime horarioDesembarque;
 
-    //Método construtor
-    public BilheteEletronico(Passageiro passageiro, Viagem viagem, int indiceEmbarque, int indiceDesembarque, int poltrona) {
-        setPassageiro(passageiro);
-        setViagem(viagem);
-        setDadosViagem(indiceEmbarque, indiceDesembarque);
-        setPoltrona(poltrona);
+    // Método construtor
+    public BilheteEletronico(Passageiro passageiro, Viagem viagem, ParadaDecorator embarque,
+            ParadaDecorator desembarque, int numAssento, LocalDateTime horarioEmbarque) {
+        this.passageiro = passageiro;
+        this.viagem = viagem;
+        this.embarque = embarque;
+        this.desembarque = desembarque;
+        this.numAssento = numAssento;
         this.id = UUID.randomUUID();
+        this.status = StatusViagem.EM_ANDAMENTO;
+        this.horarioEmbarque = horarioEmbarque;
+
+        Veiculo veiculo = viagem.getVeiculo();
+
+        BilheteEletronicoValidator.validateBilheteEletronico(this, veiculo);
+        veiculo.adicionarPassageiro(passageiro, numAssento);
+        this.passageiro.setEmViagem(true);
+        this.desembarque.addObserver(this);
     }
 
-    //Método de exibição de dados
-    public String exibirDados() {
-        return "Passageiro: " + passageiro.getNome()
-                + "\nCPF: " + passageiro.getCpf()
-                + "\nEmbarque: " + embarque.getEnderecoFormatado()
-                + "\nDesembarque: " + desembarque.getEnderecoFormatado()
-                + "\nData de saída prevista: " + viagem.getDataHoraSaidaPrevista()
-                + "\nData de chegada prevista: " + viagem.getDataHoraChegadaPrevista()
-                + "\nPoltrona: " + poltrona
-                + "\nID: " + id;
+    @Override
+    public void update() {
+        this.status = StatusViagem.FINALIZADA;
+        this.horarioDesembarque = LocalDateTime.now();
+        this.viagem.getVeiculo().removePassageiro(this.passageiro);
     }
 
-    //Getters
+    // Getters
     public Passageiro getPassageiro() {
         return passageiro;
     }
@@ -43,58 +54,31 @@ public class BilheteEletronico {
         return viagem;
     }
 
-    public Parada getEmbarque() {
+    public ParadaDecorator getEmbarque() {
         return embarque;
     }
 
-    public Parada getDesembarque() {
+    public ParadaDecorator getDesembarque() {
         return desembarque;
     }
 
-    public LocalDateTime getDataHoraSaida() {
-        return dataHoraSaida;
-    }
-
-    public LocalDateTime getDataHoraChegada() {
-        return dataHoraChegada;
-    }
-
-    public int getPoltrona() {
-        return poltrona;
+    public int getNumAssento() {
+        return numAssento;
     }
 
     public UUID getID() {
         return id;
     }
 
-    //Setters
-    public void setPassageiro(Passageiro passageiro) {
-        this.passageiro = passageiro;
+    public StatusViagem getStatus() {
+        return status;
     }
 
-    public void setViagem(Viagem viagem) {
-        this.viagem = viagem;
+    public LocalDateTime getHorarioEmbarque() {
+        return horarioEmbarque;
     }
 
-    public void setDadosViagem(int indiceEmbarque, int indiceDesembarque) {
-        if(indiceEmbarque < indiceDesembarque) {
-            for(int i = 0; i < this.viagem.getParadas().size(); i++) {
-                if(i == indiceEmbarque) {
-                    this.embarque = this.viagem.getParadas().get(i);
-                    this.dataHoraSaida = this.viagem.getDataHoraSaidaPrevista().get(i);
-                }
-                if(i == indiceDesembarque) {
-                    this.desembarque = this.viagem.getParadas().get(i);
-                    this.dataHoraChegada = this.viagem.getDataHoraChegadaPrevista().get(i);
-                }
-            }
-        }
+    public LocalDateTime getHorarioDesembarque() {
+        return horarioDesembarque;
     }
-
-    public void setPoltrona(int poltrona) {
-        if(poltrona <= viagem.getOnibus().getCapacidade()) {
-            this.poltrona = poltrona;
-        }
-    }
-
 }

@@ -1,9 +1,8 @@
 package modelo.enums;
 
 public enum StatusViagem {
-    AGUARDANDO,
+    NAO_INICIADA,
     EM_ANDAMENTO,
     FINALIZADA,
     CANCELADA,
-    ADIADA;
 }
