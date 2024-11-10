@@ -8,6 +8,12 @@ public class Principal {
     private int opc = 0;
     private static SistemaTransporte sistema = new SistemaTransporte();
     Scanner scan = new Scanner(System.in);
+
+    public void AlimentarBase(){
+
+
+        // Adicionando viagens ao sistema
+    }
     
 
     

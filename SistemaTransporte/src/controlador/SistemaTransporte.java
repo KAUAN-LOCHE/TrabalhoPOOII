@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
+
 import modelo.BilheteEletronico;
 import modelo.Onibus;
 import modelo.Parada;
@@ -10,13 +7,16 @@ import modelo.Passageiro;
 import modelo.Viagem;
 import modelo.enums.StatusViagem;
 import modelo.HorarioOnibus;
+import modelo.Motorista;
+import modelo.*;
+import java.util.UUID;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
-import java.util.UUID;
-import modelo.Motorista;
+
 /**
- *
- * @author kauan
+ * A classe SistemaTransporte gerencia a frota de ônibus, motoristas, viagens, paradas e bilhetes eletrônicos.
+ * Ela permite a manipulação de dados como a adição e remoção de ônibus, configuração de motoristas, rotas e 
+ * manipulação de passageiros nos ônibus.
  */
 public class SistemaTransporte {
     private ArrayList<Onibus> onibus;
@@ -24,85 +24,255 @@ public class SistemaTransporte {
     private ArrayList<Viagem> viagens;
     private ArrayList<Parada> paradas;
     private ArrayList<BilheteEletronico> bilhetesEletronicos;
-    
-    public SistemaTransporte(){
+
+    /**
+     * Construtor padrão da classe SistemaTransporte, inicializando as listas de ônibus, motoristas, e viagens.
+     */
+    public SistemaTransporte() {
         onibus = new ArrayList<>();
         motoristas = new ArrayList<>();
         viagens = new ArrayList<>();
     }
 
+    /**
+     * Retorna a lista de ônibus registrados no sistema.
+     * @return Lista de ônibus.
+     */
     public ArrayList<Onibus> getOnibus() {
         return onibus;
     }
 
+    /**
+     * Retorna a lista de motoristas cadastrados no sistema.
+     * @return Lista de motoristas.
+     */
     public ArrayList<Motorista> getMotoristas() {
         return motoristas;
     }
 
+    /**
+     * Retorna a lista de viagens cadastradas no sistema.
+     * @return Lista de viagens.
+     */
     public ArrayList<Viagem> getViagens() {
         return viagens;
     }
-    
-    //MÉTODO RELATIVOS À CLASSE ÔNIBUS ========================================================================================
-    
-      
-    
-    public void setNumero(int numeroOnibus, int numero) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                onibus.get(i).setNumero(numero);
-            }
-        }
-    }
-    
-    public int getQuantidade(int numeroOnibus) {
 
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).getLotação();
+    // MÉTODOS RELATIVOS À CLASSE ÔNIBUS ========================================================================================
+
+    /**
+     * Define o número de um ônibus específico pelo seu número de identificação atual.
+     * @param numeroOnibus Número atual do ônibus.
+     * @param numero Novo número a ser atribuído ao ônibus.
+     */
+    public void setNumero(int numeroOnibus, int numero) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                o.setNumero(numero);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Retorna a lotação atual de um ônibus especificado pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     * @return Número de passageiros no ônibus, ou -1 se o ônibus não for encontrado.
+     */
+    public int getQuantidade(int numeroOnibus) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getLotacao();
             }
         }
         return -1;
     }
-    
+
+    /**
+     * Retorna o número de um ônibus específico pelo seu número de identificação atual.
+     * @param numeroOnibus Número do ônibus.
+     * @return Número do ônibus, ou -1 se o ônibus não for encontrado.
+     */
     public int getNumero(int numeroOnibus) {
-            
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).getNumero();
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getNumero();
             }
         }
         return -1;
     }
-    
-    
+
+    /**
+     * Retorna a capacidade total de assentos de um ônibus especificado pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     * @return Capacidade do ônibus, ou -1 se o ônibus não for encontrado.
+     */
     public int getCapacidade(int numeroOnibus) {
-        for(int i = 0; i < this.onibus.size(); i++){
-        if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-            return onibus.get(i).getCapacidade();
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getCapacidade();
+            }
         }
+        return -1;
     }
-    return -1;
-    }
-    
+
+    /**
+     * Define o motorista de um ônibus específico pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     * @param motorista Motorista a ser atribuído ao ônibus.
+     */
     public void setMotorista(int numeroOnibus, Motorista motorista) {
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                onibus.get(i).setMotorista(motorista);
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                o.setMotorista(motorista);
+                return;
             }
         }
     }
-         
-    public Motorista getMotorista(int numeroOnibus){
-        for(int i = 0; i < this.onibus.size(); i++){
-            if(this.onibus.get(i) != null && this.onibus.get(i).getNumero() == numeroOnibus){
-                return onibus.get(i).getMotorista();
+
+    /**
+     * Retorna o motorista de um ônibus específico pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     * @return Motorista do ônibus, ou null se o ônibus não for encontrado.
+     */
+    public Motorista getMotorista(int numeroOnibus) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getMotorista();
             }
         }
-    return null;
+        return null;
     }
+
+    /**
+     * Define a rota de um ônibus específico pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     * @param rota Número da rota a ser atribuída ao ônibus.
+     */
+    public void setRota(int numeroOnibus, int rota) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                o.setRota(rota);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Retorna a rota de um ônibus específico pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     * @return Rota do ônibus, ou -1 se o ônibus não for encontrado.
+     */
+    public int getRota(int numeroOnibus) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getRota();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Retorna a lotação atual de um ônibus específico pelo seu número de identificação.
+     * @param numeroOnibus Número do ônibus.
+     */
+    public int getLotacao(int numeroOnibus) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getLotacao();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Adiciona um novo ônibus ao sistema.
+     * @param onibus Novo objeto de ônibus a ser adicionado.
+     */
+    public void adicionarOnibus(Onibus onibus) {
+        this.onibus.add(onibus);
+    }
+
+    /**
+     * Remove um ônibus do sistema pelo número do ônibus.
+     * @param numeroOnibus Número do ônibus a ser removido.
+     */
+    public void removerOnibus(int numeroOnibus) {
+        this.onibus.removeIf(o -> o.getNumero() == numeroOnibus);
+    }
+
+    /**
+     * Adiciona um passageiro ao ônibus especificado pelo número.
+     * @param numeroOnibus Número do ônibus onde o passageiro será adicionado.
+     * @param passageiro Passageiro a ser adicionado.
+     * @throws IllegalArgumentException Se o ônibus estiver cheio ou não houver assento adequado.
+     */
+    public void adicionarPassageiro(int numeroOnibus, Passageiro passageiro) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                o.adicionarPassageiro(passageiro);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Ônibus não encontrado.");
+    }
+
+    /**
+     * Busca o assento de um passageiro pelo CPF no ônibus especificado pelo número.
+     * @param numeroOnibus Número do ônibus onde será feita a busca.
+     * @param cpf CPF do passageiro.
+     * @return Assento do passageiro encontrado.
+     * @throws IllegalArgumentException Caso o passageiro não seja encontrado.
+     */
+    public Assento buscaAssentoPassageiro(int numeroOnibus, String cpf) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.buscaAssentoPassageiro(cpf);
+            }
+        }
+        throw new IllegalArgumentException("Ônibus não encontrado.");
+    }
+
+    /**
+     * Remove um passageiro do ônibus especificado pelo número.
+     * @param numeroOnibus Número do ônibus onde o passageiro será removido.
+     * @param cpf CPF do passageiro a ser removido.
+     * @return Passageiro removido.
+     * @throws IllegalArgumentException Caso o passageiro não seja encontrado.
+     */
+    public Passageiro removerPassageiro(int numeroOnibus, String cpf) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.removePassageiro(cpf);
+            }
+        }
+        throw new IllegalArgumentException("Ônibus não encontrado.");
+    }
+
+    /**
+     * Retorna a lista de assentos de um ônibus pelo número.
+     * @param numeroOnibus Número do ônibus.
+     * @return Array de assentos do ônibus, ou null se o ônibus não for encontrado.
+     */
+    public Assento[] getAssentos(int numeroOnibus) {
+        for (Onibus o : this.onibus) {
+            if (o.getNumero() == numeroOnibus) {
+                return o.getAssentos();
+            }
+        }
+        return null;
+    }
+}
+
+
+
             
     //MÉTODOS DA CLASSE MOTORISTA ====================================================================================
+    
+
+
+
+
     
     //MÉTODOS DA CLASSE VIAGEM ====================================================================================
     

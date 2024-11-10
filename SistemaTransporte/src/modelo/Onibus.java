@@ -106,7 +106,7 @@ public class Onibus {
      * Retorna a lotação do ônibus
      * @return {@code int} lotação
      */
-    public int getLotação() {
+    public int getLotacao() {
         return lotação;
     }
 
