@@ -16,8 +16,16 @@ public class PagamentoPassagem {
     private LocalDateTime dataHoraPagamento;
     private MetodoPagamento metodoPagamento;
 
+    //Atributos relacionados ao bilhete eletrônico
+    private Viagem viagem;
+    private ParadaDecorator embarque;
+    private ParadaDecorator desembarque;
+    private int numAssento;
+    private LocalDateTime horarioEmbarque;
+
     // Construtor
-    public PagamentoPassagem(Passageiro passageiro, Onibus onibus, double valorPassagem, MetodoPagamento metodoPagamento) {
+    public PagamentoPassagem(Passageiro passageiro, Onibus onibus, double valorPassagem, MetodoPagamento metodoPagamento,
+            Viagem viagem, ParadaDecorator embarque, ParadaDecorator desembarque, int numAssento, LocalDateTime horarioEmbarque) {
         this.id = UUID.randomUUID();
         this.passageiro = passageiro;
         this.onibus = onibus;
@@ -25,16 +33,25 @@ public class PagamentoPassagem {
         this.metodoPagamento = metodoPagamento;
         this.pago = false;
         this.dataHoraPagamento = null; // O pagamento ainda não foi feito
+
+        //Atributos relacionados ao bilhete eletrônico
+        this.viagem = viagem;
+        this.embarque = embarque;
+        this.desembarque = desembarque;
+        this.numAssento = numAssento;
+        this.horarioEmbarque = horarioEmbarque;
     }
 
     // Realiza o pagamento da passagem
-    public boolean realizarPagamento() {
+    public BilheteEletronico realizarPagamento() {
         if (!pago) {
             this.pago = true;
             this.dataHoraPagamento = LocalDateTime.now();
-            return true; // Pagamento realizado com sucesso
+            BilheteEletronico bilhete = new BilheteEletronico(passageiro, viagem, embarque, desembarque, numAssento,
+                horarioEmbarque);
+            return bilhete; // Pagamento realizado com sucesso
         }
-        return false; // Pagamento já realizado
+        return null; // Pagamento já realizado
     }
 
     // Retorna o status do pagamento

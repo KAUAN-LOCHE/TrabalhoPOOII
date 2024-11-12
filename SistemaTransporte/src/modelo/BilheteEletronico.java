@@ -8,6 +8,7 @@ import modelo.interfaces.Veiculo;
 import modelo.interfaces.ViagemObserver;
 
 public class BilheteEletronico implements ViagemObserver {
+
     private final UUID id;
     private final Passageiro passageiro;
     private final Viagem viagem;
@@ -18,7 +19,15 @@ public class BilheteEletronico implements ViagemObserver {
     private LocalDateTime horarioEmbarque;
     private LocalDateTime horarioDesembarque;
 
-    // Método construtor
+    /**
+     * Construtor da classe BilheteEletronico
+     * @param passageiro
+     * @param viagem
+     * @param embarque
+     * @param desembarque
+     * @param numAssento
+     * @param horarioEmbarque
+    */
     public BilheteEletronico(Passageiro passageiro, Viagem viagem, ParadaDecorator embarque,
             ParadaDecorator desembarque, int numAssento, LocalDateTime horarioEmbarque) {
         this.passageiro = passageiro;
@@ -45,39 +54,74 @@ public class BilheteEletronico implements ViagemObserver {
         this.viagem.getVeiculo().removePassageiro(this.passageiro);
     }
 
-    // Getters
+    /**
+     * Retorna o passageiro
+     * @return {@code Passageiro} passageiro
+     */
     public Passageiro getPassageiro() {
         return passageiro;
     }
 
+    /**
+     * Retorna a viagem
+     * @return {@code Viagem} viagem
+     */
     public Viagem getViagem() {
         return viagem;
     }
 
+    /**
+     * Retorna o local do embarque
+     * @return {@code ParadaDecorator} embarque
+     */
     public ParadaDecorator getEmbarque() {
         return embarque;
     }
 
+    /**
+     * Retorna o local do desembarque
+     * @return {@code ParadaDecorator} desmbarque
+     */
     public ParadaDecorator getDesembarque() {
         return desembarque;
     }
 
+    /**
+     * Retorna o número do assento do passageiro
+     * @return {@code int} numAssento
+     */
     public int getNumAssento() {
         return numAssento;
     }
 
+    /**
+     * Retorna o ID do bilhete eletrônico
+     * @return {@code UUID} id
+     */
     public UUID getID() {
         return id;
     }
 
+    /**
+     * Retorna o status da viagem
+     * @return {@code StatusViagem} status
+     */
     public StatusViagem getStatus() {
         return status;
     }
 
+    /**
+     * Retorna o horário do embarque
+     * @return {@code LocalDateTime} horarioEmbarque
+     */
     public LocalDateTime getHorarioEmbarque() {
         return horarioEmbarque;
     }
 
+    /**
+     * Retorna o horário do desembarque
+     * @return {@code LocalDateTime} horarioDesembarque
+     */
     public LocalDateTime getHorarioDesembarque() {
         return horarioDesembarque;
     }
