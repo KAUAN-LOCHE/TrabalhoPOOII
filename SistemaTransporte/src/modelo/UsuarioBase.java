@@ -4,11 +4,11 @@ import java.util.UUID;
 
 public abstract class UsuarioBase {
 
-    private String nome;
-    private int idade;
-    private String cpf;
-    private final UUID id;
-    private String senha;
+    protected String nome;
+    protected int idade;
+    protected String cpf;
+    protected final UUID id;
+    protected String senha;
 
     /**
      * Construtor da classe UsuarioBase
@@ -105,5 +105,9 @@ public abstract class UsuarioBase {
         System.out.println("Idade: " + idade + " anos");
         System.out.println("CPF: " + cpf);
         System.out.println("id de usuario: " + id);
+    }
+
+    public String toString() {
+        return "Nome: " + nome + "\nIdade: " + idade + " anos\nCPF: " + cpf + "\nid de usuario: " + id;
     }
 }

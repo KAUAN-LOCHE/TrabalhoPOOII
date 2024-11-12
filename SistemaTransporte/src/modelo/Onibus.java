@@ -66,6 +66,7 @@ public class Onibus implements Veiculo {
     /**
      * @return {@code Motorista} do ônibus
      */
+    @Override
     public Motorista getMotorista() {
         return motorista;
     }
@@ -75,6 +76,7 @@ public class Onibus implements Veiculo {
      * 
      * @param motorista
      */
+    @Override
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
     }
@@ -84,6 +86,7 @@ public class Onibus implements Veiculo {
      * 
      * @return {@code int} capacidade
      */
+    @Override
     public int getCapacidade() {
         return capacidade;
     }
@@ -93,6 +96,7 @@ public class Onibus implements Veiculo {
      * 
      * @return {@code int} rota
      */
+    @Override
     public int getRota() {
         return rota;
     }
@@ -102,6 +106,7 @@ public class Onibus implements Veiculo {
      * 
      * @param rota
      */
+    @Override
     public void setRota(int rota) {
         this.rota = rota;
     }
@@ -111,6 +116,7 @@ public class Onibus implements Veiculo {
      * 
      * @return {@code int} número
      */
+    @Override
     public int getNumero() {
         return numero;
     }
@@ -120,6 +126,7 @@ public class Onibus implements Veiculo {
      * 
      * @return {@code int} lotação
      */
+    @Override
     public int getLotacao() {
         return lotação;
     }
@@ -129,6 +136,7 @@ public class Onibus implements Veiculo {
      * 
      * @param numero
      */
+    @Override
     public void setNumero(int numero) {
         this.numero = numero;
     }
