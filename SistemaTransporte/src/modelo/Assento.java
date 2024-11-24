@@ -58,10 +58,13 @@ public class Assento {
         return tipo;
     }
 
+   
+
     public String toString() {
-        return "Assento{" +
-                "passageiro=" + passageiro +
-                ", tipo=" + tipo +
-                '}';
+        if (passageiro == null) {
+            return "assento vazio";
+        }
+        return  "passageiro: " + passageiro +
+                "\ntipo: " + tipo;
     }
 }

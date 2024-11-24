@@ -100,4 +100,26 @@ public class ParadaDecorator implements ViagemSubject{
         this.visitada = true;
         this.notifyObservers();
     }
+
+    /**
+     * Retorna a parada
+     * @return {@code Parada} parada
+     */
+    public Parada getParada() {
+        return parada;
+    }
+
+    public String toString() {
+
+        //String do endereço e id de paradas
+        
+        String endereco = (parada == null) ? "Endereço não informado" : parada.getEndereco();
+        String id = (parada == null) ? "ID não informado" : parada.getId().toString();
+
+        return "id: " + this.id + "\nhorarioPrevisto: " + horarioPrevisto + "\nhorario: " + horario
+                + "\nvisitada: " + visitada + "\nEndereço: " + endereco + "\nID da Parada: " + id;
+ 
+
+
+    }
 }

@@ -101,4 +101,12 @@ public class Motorista extends UsuarioBase{
         System.out.println("Empresa: " + empresa);
         System.out.println("Faz a linha: " + linhaOnibus);
     }
+
+    @Override
+    //ToString com os dados do motorista, como NOME, idade, cpf, cnh, experiencia, empresa e linha de onibus
+    public String toString() {
+        return "Motorista: " + nome + "\nCPF: " + cpf + "\ncnh: " + cnh + "\nempresa: " + empresa + "\nexperiencia: " + experiencia + "\nlinhaOnibus: "
+                + linhaOnibus;
+    }
+   
 }

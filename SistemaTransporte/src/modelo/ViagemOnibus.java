@@ -3,7 +3,6 @@ package modelo;
 import java.util.ArrayList;
 
 public class ViagemOnibus extends Viagem {
-    private ArrayList<ParadaDecorator> paradas;
 
     public ViagemOnibus(Onibus onibus, ArrayList<ParadaDecorator> paradas) {
         super(onibus, paradas);
@@ -25,5 +24,10 @@ public class ViagemOnibus extends Viagem {
 
     public void removeParada(ParadaDecorator parada) {
         this.paradas.remove(parada);
+    }
+
+    public String toString() {
+        String veiculo = (this.veiculo != null) ? this.veiculo.toString() : "indefinido";
+        return "id: " + id + "\nstatus: " + status + "\nveiculo: " + veiculo;
     }
 }
