@@ -88,30 +88,28 @@ public class Principal {
         sis.addPassageiro("Fernanda", 75, "78978978978", "6543", "Rua 6, 131", "(78)9789-8978", TipoAssento.IDOSO);
         sis.addPassageiro("Luis", 40, "11223344556", "2109", "Rua 7, 415", "(11)2233-4455", TipoAssento.COMUM);
         sis.addPassageiro("Bruna", 80, "99887766554", "3456", "Rua 8, 161", "(99)8877-6655", TipoAssento.IDOSO);
-        sis.addPassageiro("Mariana", 45, "12345678900", "1234", "Rua 9, 171", "(12)3456-7890", TipoAssento.COMUM);
-        sis.addPassageiro("Marcos", 85, "98765432100", "5678", "Rua 10, 181", "(98)7654-3210", TipoAssento.IDOSO);
-        sis.addPassageiro("Carla", 50, "12312312312", "8765", "Rua 11, 191", "(12)3123-1231", TipoAssento.COMUM);
-        sis.addPassageiro("Antonio", 90, "32132132132", "4321", "Rua 12, 201", "(32)1321-3213", TipoAssento.IDOSO);
-        sis.addPassageiro("Paulo", 55, "45645645645", "9101", "Rua 13, 211", "(45)6456-4564", TipoAssento.COMUM);
-        sis.addPassageiro("Fernanda", 95, "78978978978", "6543", "Rua 14, 221", "(78)9789-8978", TipoAssento.IDOSO);
-        sis.addPassageiro("Luiz", 60, "11223344556", "2109", "Rua 15, 231", "(11)2233-4455", TipoAssento.COMUM);
-        sis.addPassageiro("Bruno", 100, "99887766554", "3456", "Rua 16, 241", "(99)8877-6655", TipoAssento.IDOSO);
-        sis.addPassageiro("Mariana", 65, "12345678900", "1234", "Rua 17, 251", "(12)3456-7890", TipoAssento.COMUM);
-        sis.addPassageiro("Marcos", 105, "98765432100", "5678", "Rua 18, 261", "(98)7654-3210", TipoAssento.IDOSO);
-        sis.addPassageiro("Carla", 70, "12312312312", "8765", "Rua 19, 271", "(12)3123-1231", TipoAssento.COMUM);
-        sis.addPassageiro("Antonio", 110, "32132132132", "4321", "Rua 20, 281", "(32)1321-3213", 
-TipoAssento.IDOSO);
-        sis.addPassageiro("Paulo", 75, "45645645645", "9101", "Rua 21, 291", "(45)6456-4564", TipoAssento.IDOSO);
-        sis.addPassageiro("Fernanda", 120, "78978978978", "6543", "Rua 22, 301", "(78)9789-8978", TipoAssento.IDOSO);
-        sis.addPassageiro("Luiz", 80, "11223344556", "2109", "Rua 23, 311", "(11)2233-4455", TipoAssento.IDOSO);
-
+        sis.addPassageiro("Mariana Cardoso", 45, "12345678901", "1235", "Rua 9, 171", "(12)3456-7890", TipoAssento.COMUM);
+        sis.addPassageiro("Marcos", 85, "98765432101", "5679", "Rua 10, 181", "(98)7654-3210", TipoAssento.IDOSO);
+        sis.addPassageiro("Carla", 50, "12312312313", "8766", "Rua 11, 191", "(12)3123-1231", TipoAssento.COMUM);
+        sis.addPassageiro("Antonio", 90, "32132132133", "4322", "Rua 12, 201", "(32)1321-3213", TipoAssento.IDOSO);
+        sis.addPassageiro("Paulo", 55, "45645645646", "9102", "Rua 13, 211", "(45)6456-4564", TipoAssento.COMUM);
+        sis.addPassageiro("Fernanda", 95, "78978978979", "6544", "Rua 14, 221", "(78)9789-8978", TipoAssento.IDOSO);
+        sis.addPassageiro("Luiz", 60, "11223344557", "2110", "Rua 15, 231", "(11)2233-4455", TipoAssento.COMUM);
+        sis.addPassageiro("Bruno", 100, "99887766555", "3457", "Rua 16, 241", "(99)8877-6655", TipoAssento.IDOSO);
+        sis.addPassageiro("Mariana", 65, "12345678902", "1236", "Rua 17, 251", "(12)3456-7890", TipoAssento.COMUM);
+        sis.addPassageiro("Marcos", 105, "98765432102", "5680", "Rua 18, 261", "(98)7654-3210", TipoAssento.IDOSO);
+        sis.addPassageiro("Carla", 70, "12312312314", "8767", "Rua 19, 271", "(12)3123-1231", TipoAssento.COMUM);
+        sis.addPassageiro("Antonio", 110, "32132132134", "4323", "Rua 20, 281", "(32)1321-3213", TipoAssento.IDOSO);
+        sis.addPassageiro("Paulo", 75, "45645645647", "9103", "Rua 21, 291", "(45)6456-4564", TipoAssento.IDOSO);
+        sis.addPassageiro("Fernanda", 120, "78978978980", "6545", "Rua 22, 301", "(78)9789-8978", TipoAssento.IDOSO);
+        sis.addPassageiro("Luiz", 80, "11223344558", "2111", "Rua 23, 311", "(11)2233-4455", TipoAssento.IDOSO);
 
         //Crie assentos para CADEIRANTE e PLUS_SIZE
-        sis.addPassageiro("Paulo", 75, "45645645645", "9101", "Rua 21, 291", "(45)6456-4564", TipoAssento.CADEIRANTE);
-        sis.addPassageiro("Fernanda", 120, "78978978978", "6543", "Rua 22, 301", "(78)9789-8978", TipoAssento.PLUS_SIZE);
-        sis.addPassageiro("Luiz", 80, "11223344556", "2109", "Rua 23, 311", "(11)2233-4455", TipoAssento.CADEIRANTE);
-        sis.addPassageiro("Bruno", 125, "99887766554", "3456", "Rua 24, 321", "(99)8877-6655", TipoAssento.PLUS_SIZE);
-        sis.addPassageiro("Mariana", 85, "12345678900", "1234", "Rua 25, 331", "(12)3456-7890", TipoAssento.CADEIRANTE);
+        sis.addPassageiro("Paulo", 75, "45645645648", "9104", "Rua 21, 291", "(45)6456-4564", TipoAssento.CADEIRANTE);
+        sis.addPassageiro("Fernanda", 120, "78978978981", "6546", "Rua 22, 301", "(78)9789-8978", TipoAssento.PLUS_SIZE);
+        sis.addPassageiro("Luiz", 80, "11223344559", "2112", "Rua 23, 311", "(11)2233-4455", TipoAssento.CADEIRANTE);
+        sis.addPassageiro("Bruno", 125, "99887766556", "3458", "Rua 24, 321", "(99)8877-6655", TipoAssento.PLUS_SIZE);
+        sis.addPassageiro("Mariana", 85, "12345678903", "1237", "Rua 25, 331", "(12)3456-7890", TipoAssento.CADEIRANTE);
 
         //Alocar passageiros em assentos de onibus variados dos criados anteriormente
 
@@ -462,6 +460,12 @@ TipoAssento.IDOSO);
         return motorista;
     }
 
+
+
+    /**
+     * Menu de seleção de viagem
+     * @return
+     */
     public static String selecionarViagem(){
         String id;
         System.out.println("Digite o ID da Viagem selecionada: ");
@@ -844,6 +848,7 @@ TipoAssento.IDOSO);
         System.out.println("|4 - Exibir Paradas                              |");
         System.out.println("|5 - Exibir Viagens                              |");
         System.out.println("|6 - Exibir Bilhetes                             |");
+        System.out.println("|7 - Exibir Passageiros cadastrados              |");
         System.out.println("|0 - Voltar                                      |");
         System.out.println("==================================================");
         System.out.println("Digite a opção desejada: ");
@@ -917,6 +922,15 @@ TipoAssento.IDOSO);
                 System.out.println("======================================================");
                 for(BilheteEletronico bilhete: bilhetes){
                     System.out.println(bilhete.toString());
+                    System.out.println("==============================");
+                }
+                break;
+
+            case 7:
+                ArrayList<Passageiro> passageiros = sis.getPassageiros();
+                System.out.println("======================================================");
+                for(Passageiro passageiro: passageiros){
+                    System.out.println(passageiro.toString());
                     System.out.println("==============================");
                 }
                 break;
@@ -1087,17 +1101,99 @@ TipoAssento.IDOSO);
      * Exibir viagens disponíveis e suas paradas para o cliente 
      */
     public static void comprarPassagem(){
-        //// A ser implementado
+        System.out.println("======================================================");
+        System.out.println("Viagens Disponíveis: ");
+        ArrayList<Viagem> viagens = sis.getViagens();
+        for(Viagem viagem: viagens){
+            System.out.println(viagem.toString());
+            System.out.println("\n==============================\n");
+        }
+        System.out.println("======================================================");
+        System.out.println("Digite o ID da Viagem desejada: ");
+        String id = scan.nextLine();
+        Viagem viagem = sis.getViagemId(id);
+        if(viagem == null){
+            System.out.println("Viagem não encontrada");
+            return;
+        }
+        System.out.println("======================================================");
+        System.out.println("Paradas da Viagem: ");
+        ArrayList<ParadaDecorator> paradas = viagem.getParadas();
+        for(ParadaDecorator parada: paradas){
+            System.out.println(parada.toString());
+            System.out.println("\n==============================\n");
+        }
+        System.out.println("======================================================");
+        System.out.println("Digite o ID da Parada de Embarque: ");
+        String idEmbarque = scan.nextLine();
+        System.out.println("Digite o ID da Parada de Desembarque: ");
+        String idDesembarque = scan.nextLine();
+        System.out.println("Digite o CPF do Passageiro: ");
+        String cpf = scan.nextLine();
+        sis.addBilhete(cpf, viagem, idEmbarque, idDesembarque);
+        System.out.println("Bilhete comprado com sucesso!");
+        System.out.println("======================================================");
     }
 
     /**
      * Cancelar passagem
      */
     public static void cancelarPassagem(){
-        //// A ser implementado
+        scan.nextLine();
+        System.out.println("======================================================");
+        System.out.println("Digite seu CPF: ");
+        String cpf = scan.nextLine();
+        String id = sis.getBilheteEletronico(cpf);
+        if(id == null){
+            System.out.println("Bilhete não encontrado");
+            return;
+        }
+        System.out.println("======================================================");
+        System.out.println("Deseja cancelar o bilhete? 1 - Sim 0 - Não");
+        int opcao = scan.nextInt();
+        if(opcao == 0){
+            return;
+        }
+        sis.removerBilhete(id);
+        System.out.println("Bilhete cancelado com sucesso!");
+        System.out.println("======================================================");
+
     }
 
-
+    public static int verificarCadastro() {
+        int b = 0;
+        while (b == 0) {
+            if (scan.hasNextLine()) scan.nextLine(); // Consome quebra de linha extra
+            System.out.println("======================================================");
+            System.out.println("Digite seu nome: ");
+            String nome = scan.nextLine();
+            System.out.println("Digite seu CPF: ");
+            String cpf = scan.nextLine();
+            System.out.println("Digite sua senha: ");
+            String senha = scan.nextLine();
+    
+            // Chamada corrigida com a ordem correta dos parâmetros
+            b = sis.verificarPassageiro(senha, cpf, nome);
+    
+            System.out.println("======================================================");
+            if (b == 1) {
+                System.out.println("Passageiro encontrado!");
+                System.out.println("======================================================");
+                return b;
+            } else {
+                System.out.println("Passageiro não encontrado!");
+                System.out.println("Digite 1 para tentar novamente ou 0 para voltar");
+                String opcaoStr = scan.nextLine();
+                int opcao = Integer.parseInt(opcaoStr);
+                System.out.println("======================================================");
+                if (opcao == 0) {
+                    return b;
+                }
+            }
+        }
+        return b;
+    }
+    
 
     public static void main(String[] args) {
        // main.Teste1();
@@ -1220,9 +1316,55 @@ TipoAssento.IDOSO);
 
                         switch(opcaoCliente){
                             case 1: 
+                                scan.nextLine();
+                                System.out.println("======================================================");
+                                System.out.println("|1 - Possui Cadastro e deseja comprar passagem      |");
+                                System.out.println("|2 - Não possui cadastro e deseja comprar passagem  |");
+                                System.out.println("|0 - Voltar                                         |");
+                                System.out.println("======================================================");
+                                int opcao = scan.nextInt();
+                                switch(opcao){
+                                    case 1:
+                                        if(verificarCadastro() == 1){
+                                            comprarPassagem();
+                                        }else{
+                                            System.out.println("Passageiro não encontrado");
+                                        }
+                                        break;
+                                    case 2:
+                                        scan.nextLine();
+                                        System.out.println("======================================================");
+                                        System.out.println("Digite o nome do Passageiro: ");
+                                        String nome = scan.nextLine();
+                                        System.out.println("Digite a idade do Passageiro: ");
+                                        int idade = scan.nextInt();
+                                        scan.nextLine();
+                                        System.out.println("Digite o CPF do Passageiro: ");
+                                        String cpf = scan.nextLine();
+                                        System.out.println("Digite a senha do Passageiro: ");
+                                        String senha = scan.nextLine();
+                                        System.out.println("Digite o endereço do Passageiro: ");
+                                        String endereco = scan.nextLine();
+                                        System.out.println("Digite o telefone do Passageiro: ");
+                                        String telefone = scan.nextLine();
+                                        TipoAssento tipoAssento = selecionarTipoAssento();
+                                        sis.addPassageiro(nome, idade, cpf, senha, endereco, telefone, tipoAssento);
+                                        System.out.println("Passageiro cadastrado com sucesso!");
+                                        System.out.println("======================================================");
+                                        System.out.println("Exibir Passageiro cadastrado: ");
+                                        System.out.println(sis.getPassageiroCPF(cpf).toString());
+                                        System.out.println("======================================================");
+                                        comprarPassagem();
+                                        break;
+                                    case 0:
+                                        break;
+                                    default:
+                                        System.out.println("Opção inválida");
+                                        break;
+                                }
                                 comprarPassagem();
                                 break;
-                        
+                    
                             case 2:
                                 cancelarPassagem();
                                 break;

@@ -178,6 +178,23 @@ public class Onibus implements Veiculo {
     }
 
     /**
+     * Adiciona um passageiro ao ônibus no primeiro assento disponível do tipo do
+     * @param passageiro
+     */
+    public void adicionarPassageiro(Passageiro passageiro) {
+        for (int i = 0; i < this.capacidade; i++) {
+            Assento assento = this.assentos[i];
+            if (!assento.estaOcupado() && assento.getTipo() == passageiro.getTipoAssento()) {
+                assento.setPassageiro(passageiro);
+                this.lotação++;
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Não há assentos disponíveis para o tipo do passageiro");
+    }
+
+    /**
      * Busca o assento de um passageiro pelo CPF
      * 
      * @param cpf CPF do passageiro

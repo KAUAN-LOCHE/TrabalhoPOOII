@@ -122,6 +122,25 @@ public class SistemaTransporte {
     // ========================================================================================
 
     /**
+     * Verifica se um passageiro está cadastrado no sistema.
+     * @param senha
+     * @param cpf
+     * @param nome
+     * @return
+     */
+    public int verificarPassageiro(String senha, String cpf, String nome) {
+        if (this.passageiros == null) {
+            return 0;
+        }
+        for (Passageiro p : this.passageiros) {
+            if (p.getCpf().equals(cpf) && p.getSenha().equals(senha) && p.getNome().equals(nome)) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    /**
      * Cria um novo passageiro.
      * @param nome
      * @param idade
@@ -1025,6 +1044,15 @@ public class SistemaTransporte {
     // MÉTODOS DA CLASSE BILHETEELETRÔNICO
     // ====================================================================================
 
+    public String getBilheteEletronico(String cpfCliente){
+        for (BilheteEletronico b : this.bilhetesEletronicos) {
+            if (b.getPassageiro().getCpf().equals(cpfCliente)) {
+                return b.getID().toString();
+            }
+        }
+        return null;
+    }
+
     /**
      * Adiciona um bilhete eletrônico ao sistema.
      * @param cpf
@@ -1036,11 +1064,10 @@ public class SistemaTransporte {
         Passageiro passageiro = getPassageiroCPF(cpf);
         ParadaDecorator embarqueParada = getParadaDecoratorId(embarque);
         ParadaDecorator desembarqueParada = getParadaDecoratorId(desembarque);
-        int numOnibus = procurarPassageiroTodosVeiculos(cpf);
-        int assento = getNumAssento(numOnibus, cpf);
-        if (numOnibus == -1) {
-            throw new IllegalArgumentException("Passageiro não encontrado.");
-        }
+        Onibus onibus = (Onibus) viagem.getVeiculo();
+        onibus.adicionarPassageiro(passageiro);
+        int assento = getNumAssento(onibus.getNumero(), passageiro.getCpf());
+        
         if (assento == -1) {
             throw new IllegalArgumentException("Assento não encontrado.");
         }
