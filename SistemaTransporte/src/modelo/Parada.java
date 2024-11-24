@@ -40,9 +40,14 @@ public class Parada {
     	return this.id;
     }
 	
+	/**
+	 * Retorna o endereço da parada
+	 * @return
+	 */
 	public String getEndereco() {
-		return this.endereco;
+		return "Endereço: " + this.endereco;
 	}
+	
 	
 }
 

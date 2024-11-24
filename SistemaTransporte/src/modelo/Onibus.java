@@ -211,4 +211,18 @@ public class Onibus implements Veiculo {
         passageiroRemovido.setEmViagem(false);
         return passageiroRemovido;
     }
+    
+    /**
+     * Verifica se o ônibus está cheio 
+     */
+    public String toString() {
+        lotação = 0;
+        for (int i = 0; i < this.capacidade; i++) {
+           if (this.assentos[i].estaOcupado()) {
+               lotação++;
+           }
+        }
+        String nomeMotorista = (motorista != null) ? motorista.getNome() : "indefinido";
+        return "Ônibus: " + this.numero + "\nMotorista: " + nomeMotorista + "\nRota: " + this.rota + "\nLotação: " + this.lotação + "/" + this.capacidade;
+    }
 }

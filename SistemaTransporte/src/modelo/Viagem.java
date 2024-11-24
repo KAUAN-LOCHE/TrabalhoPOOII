@@ -7,10 +7,11 @@ import modelo.enums.StatusViagem;
 import modelo.interfaces.Veiculo;
 
 public abstract class Viagem  {
-    private final UUID id;
-    private final Veiculo veiculo;
-    private ArrayList<ParadaDecorator> paradas;
-    private StatusViagem status;
+    protected final UUID id;
+    //////////////////////////////// VERIFICAR
+    protected Veiculo veiculo;
+    protected ArrayList<ParadaDecorator> paradas;
+    protected StatusViagem status;
 
     public Viagem(Veiculo veiculo, ArrayList<ParadaDecorator> paradas) {
         this.id = UUID.randomUUID();
@@ -20,14 +21,19 @@ public abstract class Viagem  {
     }
 
     /**
-     * Adiciona uma parada à lista de paradas da viagem
-     * 
-     * @param parada ParadaDecorator a ser adicionada
+     * Adiciona uma parada ao final da lista de paradas
+     * @param parada
+     * @param indice
      */
     public void adicionarParada(ParadaDecorator parada, int indice) {
         this.paradas.add(indice, parada);
     }
 
+    /**
+     * Adiciona uma parada ao final da lista de paradas
+     * @param id
+     * @return {@code ParadaDecorator} parada
+     */
     public ParadaDecorator getParadaById(UUID id) {
         ParadaDecorator result = this.paradas.stream().filter(parada -> parada.getParadaId().equals(id)).findFirst()
                 .orElse(null);
@@ -39,6 +45,10 @@ public abstract class Viagem  {
         return result;
     }
 
+    /**
+     * Inicia a viagem
+     * @param parada
+     */
     public void visitarParada(Parada parada) {
         for (ParadaDecorator p : paradas) {
             if (p.getParadaId().equals(parada.getId())) {
@@ -55,27 +65,87 @@ public abstract class Viagem  {
         return id;
     }
 
+    /**
+     * Retorna o veículo da viagem
+     * @return
+     */
     public Veiculo getVeiculo() {
         return veiculo;
     }
 
+
+    /**
+     * Retorna a lista de paradas da viagem
+     * @return
+     */
     public ArrayList<ParadaDecorator> getParadas() {
         return paradas;
     }
 
+    /**
+     * Determina a lista de paradas da viagem
+     * @param paradas
+     */
     public void setParadas(ArrayList<ParadaDecorator> paradas) {
         this.paradas = paradas;
     }
 
+    /**
+     * Retorna o status da viagem
+     * @return
+     */
     public StatusViagem getStatus() {
         return status;
     }
 
     /**
-     * Inicia a viagem
+     * Determina o status da viagem
+     * @param status
      */
     public void setStatus(StatusViagem status) {
         this.status = status;
+    }
+
+    /**
+     * Determina o veículo da viagem
+     * @param veiculo
+     */
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    /**
+     * Remove uma parada da lista de paradas
+     * @param endereco
+     */
+    public void removerParada(String endereco) {
+        for (ParadaDecorator p : paradas) {
+            if (p.getParada().getEndereco().equals(endereco)) {
+                paradas.remove(p);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Parada não encontrada");
+    }
+
+    /**
+     * Remove uma parada da lista de paradas
+     */
+    public void removerParada(Parada parada) {
+        for (ParadaDecorator p : paradas) {
+            if (p.getParada().equals(parada)) {
+                paradas.remove(p);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Parada não encontrada");
+    }
+
+    public String toString() {
+        String veiculo = this.veiculo == null ? "null" : String.valueOf(this.veiculo.getNumero());
+        return "id: " + id + "\nstatus: " + status + "\nveiculo: " + veiculo;
     }
 
 }

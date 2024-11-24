@@ -125,4 +125,18 @@ public class BilheteEletronico implements ViagemObserver {
     public LocalDateTime getHorarioDesembarque() {
         return horarioDesembarque;
     }
+
+    @Override
+    public String toString() {
+        return "Bilhete Eletrônico\n" +
+                "ID: " + id + "\n" +
+                "Passageiro: " + passageiro + "\n" +
+                "Viagem: " + viagem + "\n" +
+                "Embarque: " + embarque + "\n" +
+                "Desembarque: " + desembarque + "\n" +
+                "Número do Assento: " + numAssento + "\n" +
+                "Status: " + status + "\n" +
+                "Horário de Embarque: " + horarioEmbarque + "\n" +
+                "Horário de Desembarque: " + horarioDesembarque;
+    }
 }
