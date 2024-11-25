@@ -4,3 +4,6 @@
 /EscolaPOOII/nbproject/private/
 SistemaTransporte/build/classes/modelo/BilheteEletronico.class
 SistemaTransporte/build/classes/modelo/PagamentoPassagem.class
+SistemaTransporte/build/classes/principal/Principal.class
+SistemaTransporte/build/classes/modelo/PagamentoPassagem.class
+SistemaTransporte/build/classes/controlador/SistemaTransporte.class

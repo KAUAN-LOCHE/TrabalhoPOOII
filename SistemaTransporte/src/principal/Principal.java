@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import controlador.*;
 import modelo.*;
+import modelo.enums.MetodoPagamento;
 import modelo.enums.TipoAssento;
 
 
@@ -485,6 +486,26 @@ public class Principal {
         }
         return id;
     }
+
+    public static PagamentoPassagem selecionarPagamentoPassagem(){
+        String id;
+        System.out.println("Digite o ID do Pagamento selecionado: ");
+        ArrayList<PagamentoPassagem> pagamentos = sis.getPagamentosPassagem();
+        System.out.println("======================================================");
+        for(PagamentoPassagem pagamento: pagamentos){
+            System.out.println(pagamento.toString());
+            System.out.println("\n==============================\n");
+        }
+        id = scan.nextLine();
+        PagamentoPassagem pagamento = sis.getPagamentoPassagemId(id);
+        if(pagamento == null){
+            System.out.println("Pagamento não encontrado");
+        }else{
+            System.out.println("Pagamento selecionado: ");
+            System.out.println(pagamento.toString());
+        }
+        return pagamento;
+    }
     
 
     /**
@@ -510,6 +531,32 @@ public class Principal {
                 return TipoAssento.PLUS_SIZE;
             default:
                 return TipoAssento.COMUM;
+        }
+    }
+
+    /**
+     * Menu de seleção de método de pagamento
+     * @return {@code MetodoPagamento} metodoPagamento
+     */
+    public static MetodoPagamento selecionarMetodoPagamento(){
+        int metodoPagamento;
+        System.out.println("Selecione o método de pagamento: ");
+        System.out.println("1 - Dinheiro");
+        System.out.println("2 - Cartão de crédito");
+        System.out.println("3 - Cartão de débito");
+        System.out.println("4 - PIX");
+        metodoPagamento = scan.nextInt();
+        switch(metodoPagamento){
+            case 1:
+                return MetodoPagamento.DINHEIRO;
+            case 2:
+                return MetodoPagamento.CARTAO_CREDITO;
+            case 3:
+                return MetodoPagamento.CARTAO_DEBITO;
+            case 4:
+                return MetodoPagamento.PIX;
+            default:
+                return MetodoPagamento.DINHEIRO;
         }
     }
 
@@ -1130,6 +1177,12 @@ public class Principal {
         String idDesembarque = scan.nextLine();
         System.out.println("Digite o CPF do Passageiro: ");
         String cpf = scan.nextLine();
+        MetodoPagamento metodoPagamento = selecionarMetodoPagamento();
+        System.out.println("Digite o Valor da Passagem: ");
+        double valorPassagem = scan.nextDouble();
+        sis.addPagamentoPassagem(cpf, valorPassagem, metodoPagamento);
+        PagamentoPassagem pagamentoPassagem = selecionarPagamentoPassagem();
+        pagamentoPassagem.realizarPagamento();
         sis.addBilhete(cpf, viagem, idEmbarque, idDesembarque);
         System.out.println("Bilhete comprado com sucesso!");
         System.out.println("======================================================");
