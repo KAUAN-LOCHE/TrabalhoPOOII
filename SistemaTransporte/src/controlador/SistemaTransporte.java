@@ -2,11 +2,13 @@ package controlador;
 
 import modelo.BilheteEletronico;
 import modelo.Onibus;
+import modelo.PagamentoPassagem;
 import modelo.Parada;
 import modelo.ParadaDecorator;
 import modelo.Passageiro;
 import modelo.Viagem;
 import modelo.ViagemOnibus;
+import modelo.enums.MetodoPagamento;
 import modelo.enums.TipoAssento;
 import modelo.interfaces.Veiculo;
 import modelo.Motorista;
@@ -34,6 +36,7 @@ public class SistemaTransporte {
     private ArrayList<ParadaDecorator> decParadas;
     private static SistemaTransporte instance;
     private ArrayList<Passageiro> passageiros;
+    private ArrayList<PagamentoPassagem> pagamentosPassagem;
 
     private SistemaTransporte() {
         veiculos = new ArrayList<>();
@@ -43,6 +46,7 @@ public class SistemaTransporte {
         passageiros = new ArrayList<>();
         paradas = new ArrayList<>();
         decParadas = new ArrayList<>();
+        pagamentosPassagem = new ArrayList<>();
     }
 
     public static SistemaTransporte getInstance() {
@@ -115,6 +119,14 @@ public class SistemaTransporte {
             decParadas = new ArrayList<>();
         }
         return decParadas;
+    }
+
+    /**
+     * Retorna a lista de pagamentos de passagem cadastrados no sistema.
+     * @return {@link ArrayList} de {@link PagamentosPassagem}.
+     */
+    public ArrayList<PagamentoPassagem> getPagamentosPassagem() {
+        return pagamentosPassagem;
     }
 
 
@@ -1144,6 +1156,34 @@ public class SistemaTransporte {
             }
         }
         return -1;
+    }
+
+    // MÉTODOS DA CLASSE PAGAMENTOPASSAGEM
+    // ====================================================================================
+    /**
+     * Adiciona um pagamento de passagem ao sistema.
+     * @param cpf
+     * @param valorPassagem
+     * @param metodoPagamento
+     */
+    public void addPagamentoPassagem(String cpf, double valorPassagem, MetodoPagamento metodoPagamento) {
+        Passageiro passageiro = getPassageiroCPF(cpf);
+        PagamentoPassagem pagamentoPassagem = new PagamentoPassagem(passageiro, valorPassagem, metodoPagamento);
+        this.pagamentosPassagem.add(pagamentoPassagem);
+    }
+
+    /**
+     * Retorna um pagamento de passagem pelo ID.
+     * @param id
+     * @return {@link PagamentoPassagem} encontrado, ou {@code null} caso não seja encontrado.
+     */
+    public PagamentoPassagem getPagamentoPassagemId(String id) {
+        for (PagamentoPassagem p : this.pagamentosPassagem) {
+            if (p.getID().toString().equals(id)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 }

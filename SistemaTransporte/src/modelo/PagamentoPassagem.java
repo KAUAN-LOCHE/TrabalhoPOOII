@@ -16,42 +16,24 @@ public class PagamentoPassagem {
     private LocalDateTime dataHoraPagamento;
     private MetodoPagamento metodoPagamento;
 
-    //Atributos relacionados ao bilhete eletrônico
-    private Viagem viagem;
-    private ParadaDecorator embarque;
-    private ParadaDecorator desembarque;
-    private int numAssento;
-    private LocalDateTime horarioEmbarque;
-
     // Construtor
-    public PagamentoPassagem(Passageiro passageiro, Onibus onibus, double valorPassagem, MetodoPagamento metodoPagamento,
-            Viagem viagem, ParadaDecorator embarque, ParadaDecorator desembarque, int numAssento, LocalDateTime horarioEmbarque) {
+    public PagamentoPassagem(Passageiro passageiro, double valorPassagem, MetodoPagamento metodoPagamento) {
         this.id = UUID.randomUUID();
         this.passageiro = passageiro;
-        this.onibus = onibus;
         this.valorPassagem = valorPassagem;
         this.metodoPagamento = metodoPagamento;
         this.pago = false;
         this.dataHoraPagamento = null; // O pagamento ainda não foi feito
-
-        //Atributos relacionados ao bilhete eletrônico
-        this.viagem = viagem;
-        this.embarque = embarque;
-        this.desembarque = desembarque;
-        this.numAssento = numAssento;
-        this.horarioEmbarque = horarioEmbarque;
     }
 
     // Realiza o pagamento da passagem
-    public BilheteEletronico realizarPagamento() {
+    public boolean realizarPagamento() {
         if (!pago) {
             this.pago = true;
             this.dataHoraPagamento = LocalDateTime.now();
-            BilheteEletronico bilhete = new BilheteEletronico(passageiro, viagem, embarque, desembarque, numAssento,
-                horarioEmbarque);
-            return bilhete; // Pagamento realizado com sucesso
+            return true; // Pagamento realizado com sucesso
         }
-        return null; // Pagamento já realizado
+        return false; // Pagamento já realizado
     }
 
     // Retorna o status do pagamento
@@ -77,6 +59,10 @@ public class PagamentoPassagem {
     // Retorna o método de pagamento utilizado
     public MetodoPagamento getMetodoPagamento() {
         return metodoPagamento;
+    }
+
+    public UUID getID(){
+        return id;
     }
 
     // Define o método de pagamento
