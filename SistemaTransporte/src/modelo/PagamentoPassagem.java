@@ -27,12 +27,13 @@ public class PagamentoPassagem {
     }
 
     // Realiza o pagamento da passagem
-    public void realizarPagamento() {
-        if (pago) {
-            throw new IllegalStateException("O pagamento já foi realizado."); // Pagamento já realizado
+    public boolean realizarPagamento() {
+        if (!pago) {
+            this.pago = true;
+            this.dataHoraPagamento = LocalDateTime.now();
+            return true; // Pagamento realizado com sucesso
         }
-        this.pago = true;
-        this.dataHoraPagamento = LocalDateTime.now(); // Pagamento realizado com sucesso
+        return false; // Pagamento já realizado
     }
 
     // Retorna o status do pagamento
