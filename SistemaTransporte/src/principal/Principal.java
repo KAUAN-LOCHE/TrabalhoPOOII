@@ -7,6 +7,7 @@ import controlador.*;
 import modelo.*;
 import modelo.enums.MetodoPagamento;
 import modelo.enums.TipoAssento;
+import modelo.constantes.Constantes;
 
 
 public class Principal {
@@ -487,6 +488,10 @@ public class Principal {
         return id;
     }
 
+    /**
+     * Menu de seleção de pagamento de passagem
+     * @return
+     */
     public static PagamentoPassagem selecionarPagamentoPassagem(){
         String id;
         System.out.println("Digite o ID do Pagamento selecionado: ");
@@ -1178,8 +1183,7 @@ public class Principal {
         System.out.println("Digite o CPF do Passageiro: ");
         String cpf = scan.nextLine();
         MetodoPagamento metodoPagamento = selecionarMetodoPagamento();
-        System.out.println("Digite o Valor da Passagem: ");
-        double valorPassagem = scan.nextDouble();
+        double valorPassagem = Constantes.VALOR_PASSAGEM;
         sis.addPagamentoPassagem(cpf, valorPassagem, metodoPagamento);
         PagamentoPassagem pagamentoPassagem = selecionarPagamentoPassagem();
         pagamentoPassagem.realizarPagamento();
