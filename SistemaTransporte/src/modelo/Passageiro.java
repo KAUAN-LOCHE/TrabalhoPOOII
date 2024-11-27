@@ -23,10 +23,18 @@ public class Passageiro extends UsuarioBase implements Cloneable{
         this.emViagem = false;
     }
 
+    /**
+     * Determina se o Passageiro está em viagem
+     * @param emViagem
+     */
     public void setEmViagem(boolean emViagem) {
         this.emViagem = emViagem;
     }
 
+    /**
+     * Retorna se o Passageiro está em viagem
+     * @return {@code boolean} emViagem
+     */
     public boolean getEmViagem() {
         return this.emViagem;
     }

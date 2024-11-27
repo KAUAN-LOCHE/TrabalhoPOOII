@@ -107,6 +107,10 @@ public abstract class UsuarioBase {
         System.out.println("id de usuario: " + id);
     }
 
+    /**
+     * Representação textual do UsuarioBase
+     * @return {@code String} representação textual
+     */
     public String toString() {
         return "Nome: " + nome + "\nIdade: " + idade + " anos\nCPF: " + cpf + "\nid de usuario: " + id;
     }

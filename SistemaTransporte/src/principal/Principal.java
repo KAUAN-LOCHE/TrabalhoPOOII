@@ -15,9 +15,15 @@ public class Principal {
     String nome, cpf, endereco, telefone, senha;
     static SistemaTransporte sis = SistemaTransporte.getInstance();
 
+    /**
+     * Construtor da classe Principal
+     */
     public Principal(){
     }
 
+    /**
+     * Alimentar o sistema com dados ficticios
+     */
     public static void alimentarSistema(){
 
         //Criacao de 5 Motoristas com dados ficticios e variados
@@ -273,6 +279,10 @@ public class Principal {
         System.out.println("Digite a opção desejada: ");
     }
 
+    /**
+     * Selecionar o tipo de Bilhete Eletronico
+     * @return {@code String} tipo
+     */
     public static String selecionarBilhete(){
         String id;
         System.out.println("Digite o ID do Bilhete selecionado: ");
@@ -374,7 +384,7 @@ public class Principal {
      */
     public static ParadaDecorator selecionarParadaDecorator(){
         String id;
-
+        scan.nextLine();
         System.out.println("Digite o ID da Parada selecionada: ");
         ArrayList<ParadaDecorator> paradas = sis.getDecParadas();
         System.out.println("======================================================");
@@ -396,7 +406,7 @@ public class Principal {
 
     /**
      * menu de seleção de Passageiro
-     * @return
+     * @return {@code String} cpf
      */
     public static String selecionarPassageiro(Assento[] assentos){
         String cpf;
@@ -440,7 +450,7 @@ public class Principal {
 
     /**
      * Menu de seleção de motorista
-     * @return
+     * @return {@code Motorista} motorista
      */
     public static Motorista selecionarMotoristaOnibus(){
         String cpfMotorista;
@@ -466,7 +476,7 @@ public class Principal {
 
     /**
      * Menu de seleção de viagem
-     * @return
+     * @return {@code String} id
      */
     public static String selecionarViagem(){
         String id;
@@ -490,7 +500,7 @@ public class Principal {
 
     /**
      * Menu de seleção de pagamento de passagem
-     * @return
+     * @return {@code PagamentoPassagem} pagamento
      */
     public static PagamentoPassagem selecionarPagamentoPassagem(){
         String id;
@@ -551,6 +561,7 @@ public class Principal {
         System.out.println("3 - Cartão de débito");
         System.out.println("4 - PIX");
         metodoPagamento = scan.nextInt();
+        scan.nextLine();
         switch(metodoPagamento){
             case 1:
                 return MetodoPagamento.DINHEIRO;
@@ -1184,7 +1195,7 @@ public class Principal {
         String cpf = scan.nextLine();
         MetodoPagamento metodoPagamento = selecionarMetodoPagamento();
         double valorPassagem = Constantes.VALOR_PASSAGEM;
-        sis.addPagamentoPassagem(cpf, valorPassagem, metodoPagamento);
+        sis.addPagamentoPassagem(cpf, valorPassagem, metodoPagamento, viagem);
         PagamentoPassagem pagamentoPassagem = selecionarPagamentoPassagem();
         pagamentoPassagem.realizarPagamento();
         sis.addBilhete(cpf, viagem, idEmbarque, idDesembarque);
@@ -1251,7 +1262,7 @@ public class Principal {
         return b;
     }
     
-
+    
     public static void main(String[] args) {
        // main.Teste1();
         alimentarSistema();
@@ -1331,6 +1342,7 @@ public class Principal {
                                 scan.nextLine();
                                 System.out.println("======================================================");
                                 numOnibus = selecionarOnibus();
+                                scan.nextLine();
                                 ViagemId = selecionarViagem();
                                 sis.setOnibusViagem(ViagemId, numOnibus);
                                 System.out.println("Viagem definida com sucesso!");

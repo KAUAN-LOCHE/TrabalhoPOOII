@@ -9,6 +9,10 @@ import modelo.interfaces.ViagemObserver;
 
 public class BilheteEletronico implements ViagemObserver {
 
+    /**
+     * Atributos da classe BilheteEletronico
+     * 
+     */
     private final UUID id;
     private final Passageiro passageiro;
     private final Viagem viagem;
@@ -48,6 +52,9 @@ public class BilheteEletronico implements ViagemObserver {
     }
 
     @Override
+    /**
+     * Atualiza o status da viagem
+     */
     public void update() {
         this.status = StatusViagem.FINALIZADA;
         this.horarioDesembarque = LocalDateTime.now();
@@ -127,6 +134,10 @@ public class BilheteEletronico implements ViagemObserver {
     }
 
     @Override
+    /**
+     * Representação textual da classe
+     * @return {@code String} com informações do bilhete eletrônico
+     */
     public String toString() {
         return "Bilhete Eletrônico\n" +
                 "ID: " + id + "\n" +

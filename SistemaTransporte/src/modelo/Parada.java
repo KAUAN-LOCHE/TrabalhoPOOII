@@ -10,7 +10,10 @@ public class Parada {
 	
 	private boolean ativo;
 	
-	// CONSTRUTOR
+	/**
+	 * Construtor da classe Parada
+	 * @param endereco
+	 */
 	public Parada(
 			String endereco) 
 	{
@@ -22,20 +25,35 @@ public class Parada {
 	
 	// MÉTODOS -----------------------------------------------------------------------------------------------------------------------------
 	
-	
+	/**
+	 * Retorna se a parada está ativa
+	 * @return boolean
+	 */
 	public boolean isAtivo(){
 		return this.ativo; // Some condition can be checked in the future for this method to be relevant
 	}
 	
 	// GETTERS AND SETTERS ==================================================================================================================================
-    public boolean getAtivo() {
+	/**
+	 * Retorna se a parada está ativa
+	 * @return {@code boolean} ativo
+	 */
+	public boolean getAtivo() {
     	return this.ativo;
     }
     
+	/**
+	 * Atribui um valor booleano para ativo
+	 * @param operacional
+	 */
     public void setAtivo(boolean operacional) {
     	this.ativo= operacional;
     }
 
+	/**
+	 * Retorna o ID da parada
+	 * @return {@code UUID} id
+	 */
     public UUID getId() {
     	return this.id;
     }

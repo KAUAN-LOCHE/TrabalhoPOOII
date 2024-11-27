@@ -103,7 +103,10 @@ public class Motorista extends UsuarioBase{
     }
 
     @Override
-    //ToString com os dados do motorista, como NOME, idade, cpf, cnh, experiencia, empresa e linha de onibus
+    /**
+     * Retorna uma representação em String do Motorista
+     * @return {@code String} representação em String do Motorista
+     */
     public String toString() {
         return "Motorista: " + nome + "\nCPF: " + cpf + "\ncnh: " + cnh + "\nempresa: " + empresa + "\nexperiencia: " + experiencia + "\nlinhaOnibus: "
                 + linhaOnibus;
