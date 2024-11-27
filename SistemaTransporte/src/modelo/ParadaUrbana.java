@@ -8,9 +8,8 @@ import java.time.LocalTime;
 * Esta classe estende a classe Parada e adiciona características específicas
 * de paradas urbanas, como cobertura, iluminação, banheiro e Wi-Fi.
 * 
-* @author [Enzo Racciatti]
-* @version 1.0
-* @since [03/11/24]
+* @author Racciatti
+* @since 03/11/24
 * @see Parada
 */
 public class ParadaUrbana extends Parada {

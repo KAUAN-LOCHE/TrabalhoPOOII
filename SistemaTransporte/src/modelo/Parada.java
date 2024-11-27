@@ -14,9 +14,8 @@ import java.util.UUID;
  * Implementa a interface Localizacao e define atributos e comportamentos comuns
  * a todos os tipos de parada.
  *
- * @author [Enzo Racciatti]
- * @version 1.0
- * @since 2024-03-11
+ * @author Racciatti
+ * @since 04/11/2024
  */
 public abstract class Parada implements Localizacao {
     
