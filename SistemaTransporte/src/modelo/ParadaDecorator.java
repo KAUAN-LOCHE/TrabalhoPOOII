@@ -15,6 +15,11 @@ public class ParadaDecorator implements ViagemSubject{
     private ArrayList<ViagemObserver> observers;
     protected Parada parada;
     
+    /**
+     * Construtor da classe ParadaDecorator
+     * @param parada
+     * @param horarioPrevisto
+     */
     public ParadaDecorator(Parada parada, LocalDateTime horarioPrevisto) {
         this.id = UUID.randomUUID();
         this.parada = parada;
@@ -23,16 +28,25 @@ public class ParadaDecorator implements ViagemSubject{
         this.observers = new ArrayList<>();
     }
 
+    /**
+     * Adiciona um observador
+     */
     @Override
     public void addObserver(ViagemObserver observer) {
         this.observers.add(observer);
     }
 
+    /**
+     * Remove um observador
+     */
     @Override
     public void removeObserver(ViagemObserver observer) {
         this.removeObserver(observer);
     }
 
+    /**
+     * Notifica os observadores
+     */
     @Override
     public void notifyObservers() {
         for (ViagemObserver o : observers) {
@@ -48,6 +62,10 @@ public class ParadaDecorator implements ViagemSubject{
         return parada.getId();
     }
 
+    /**
+     * Retorna o ID da parada
+     * @return {@code UUID} id
+     */
     public UUID getId() {
         return id;
     }
@@ -109,6 +127,10 @@ public class ParadaDecorator implements ViagemSubject{
         return parada;
     }
 
+    /**
+     * Representação textual da parada
+     * @return {@code String} representação textual
+     */
     public String toString() {
 
         //String do endereço e id de paradas

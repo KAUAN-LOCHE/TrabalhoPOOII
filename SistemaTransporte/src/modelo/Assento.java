@@ -2,6 +2,10 @@ package modelo;
 
 import modelo.enums.TipoAssento;
 
+/**
+ * Representa um assento de um veículo de transporte
+ * @see TipoAssento
+ */
 public class Assento {
     private Passageiro passageiro;
     private final TipoAssento tipo;
@@ -59,7 +63,10 @@ public class Assento {
     }
 
    
-
+    /**
+     * Retorna uma representação em String do assento
+     * @return {@code String} representando o assento
+     */
     public String toString() {
         if (passageiro == null) {
             return "assento vazio";

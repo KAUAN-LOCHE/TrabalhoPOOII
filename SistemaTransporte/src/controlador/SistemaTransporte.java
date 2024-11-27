@@ -49,6 +49,10 @@ public class SistemaTransporte {
         pagamentosPassagem = new ArrayList<>();
     }
 
+    /**
+     * Retorna a instância única da classe SistemaTransporte.
+     * @return Instância única da classe.
+     */
     public static SistemaTransporte getInstance() {
         if (instance == null) {
             instance = new SistemaTransporte();
@@ -845,6 +849,11 @@ public class SistemaTransporte {
         this.viagens.add(viagem);
     }
 
+    /**
+     * Retorna uma viagem de ônibus pelo ID.
+     * @param idViagem
+     * @param paradas
+     */
     public void setParadasViagem(String idViagem, ArrayList<ParadaDecorator> paradas) {
         Viagem viagem = getViagemId(idViagem);
         viagem.setParadas(paradas);
@@ -876,6 +885,11 @@ public class SistemaTransporte {
         return viagensDisponiveis;
     }
 
+    /**
+     * Retorna a lista de viagens de ônibus.
+     * @param numVeiculo
+     * @param cpf
+     */
     public void addPassageiroOnibus(int numVeiculo, String cpf) {
         Passageiro passageiro = getPassageiroCPF(cpf);
         Veiculo veiculo = GetOnibus(numVeiculo);
@@ -1036,6 +1050,9 @@ public class SistemaTransporte {
     public void setOnibusViagem(String idViagem, int numOnibus) {
         Veiculo veiculo = GetOnibus(numOnibus);
         Viagem viagem = getViagemId(idViagem);
+        if(viagem == null){
+            throw new IllegalArgumentException("Viagem não encontrada.");
+        }
         if (veiculo == null) {
             throw new IllegalArgumentException("Ônibus não encontrado.");
         }else{
@@ -1166,9 +1183,9 @@ public class SistemaTransporte {
      * @param valorPassagem
      * @param metodoPagamento
      */
-    public void addPagamentoPassagem(String cpf, double valorPassagem, MetodoPagamento metodoPagamento) {
+    public void addPagamentoPassagem(String cpf, double valorPassagem, MetodoPagamento metodoPagamento, Viagem viagem) {
         Passageiro passageiro = getPassageiroCPF(cpf);
-        PagamentoPassagem pagamentoPassagem = new PagamentoPassagem(passageiro, valorPassagem, metodoPagamento);
+        PagamentoPassagem pagamentoPassagem = new PagamentoPassagem(passageiro, valorPassagem, metodoPagamento, viagem.getVeiculo());
         this.pagamentosPassagem.add(pagamentoPassagem);
     }
 

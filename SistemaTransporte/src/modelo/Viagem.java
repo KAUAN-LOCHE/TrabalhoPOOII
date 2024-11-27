@@ -13,6 +13,11 @@ public abstract class Viagem  {
     protected ArrayList<ParadaDecorator> paradas;
     protected StatusViagem status;
 
+    /**
+     * Construtor da classe Viagem
+     * @param veiculo
+     * @param paradas
+     */
     public Viagem(Veiculo veiculo, ArrayList<ParadaDecorator> paradas) {
         this.id = UUID.randomUUID();
         this.veiculo = veiculo;
