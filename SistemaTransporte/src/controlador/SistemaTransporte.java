@@ -13,13 +13,10 @@ import modelo.enums.TipoAssento;
 import modelo.interfaces.Veiculo;
 import modelo.Motorista;
 import modelo.Assento;
-import modelo.UsuarioBase;
-
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.util.List;
-import java.time.LocalTime;
+
 
 
 /**
